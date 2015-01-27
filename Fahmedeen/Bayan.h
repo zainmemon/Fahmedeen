@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface Bayan : UIViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 
 @end

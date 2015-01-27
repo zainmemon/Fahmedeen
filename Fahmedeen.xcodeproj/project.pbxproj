@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1961D1C81A77568800425562 /* About.m in Sources */ = {isa = PBXBuildFile; fileRef = 1961D1C71A77568800425562 /* About.m */; };
+		1961D1CB1A77569D00425562 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 1961D1CA1A77569D00425562 /* Contact.m */; };
+		1961D1CD1A7759FC00425562 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1961D1CC1A7759FC00425562 /* AVFoundation.framework */; };
 		19E5A4D7197EA902009FE7D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E5A4D6197EA902009FE7D5 /* Foundation.framework */; };
 		19E5A4D9197EA902009FE7D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E5A4D8197EA902009FE7D5 /* CoreGraphics.framework */; };
 		19E5A4DB197EA902009FE7D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E5A4DA197EA902009FE7D5 /* UIKit.framework */; };
@@ -14,13 +17,15 @@
 		19E5A4E3197EA902009FE7D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A4E2197EA902009FE7D5 /* main.m */; };
 		19E5A4E7197EA902009FE7D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A4E6197EA902009FE7D5 /* AppDelegate.m */; };
 		19E5A4EA197EA902009FE7D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19E5A4E8197EA902009FE7D5 /* Main.storyboard */; };
-		19E5A4ED197EA902009FE7D5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A4EC197EA902009FE7D5 /* ViewController.m */; };
+		19E5A4ED197EA902009FE7D5 /* Bayan.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A4EC197EA902009FE7D5 /* Bayan.m */; };
 		19E5A4EF197EA902009FE7D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19E5A4EE197EA902009FE7D5 /* Images.xcassets */; };
 		19E5A4F6197EA902009FE7D5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E5A4F5197EA902009FE7D5 /* XCTest.framework */; };
 		19E5A4F7197EA902009FE7D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E5A4D6197EA902009FE7D5 /* Foundation.framework */; };
 		19E5A4F8197EA902009FE7D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E5A4DA197EA902009FE7D5 /* UIKit.framework */; };
 		19E5A500197EA902009FE7D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19E5A4FE197EA902009FE7D5 /* InfoPlist.strings */; };
 		19E5A502197EA902009FE7D5 /* FahmedeenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A501197EA902009FE7D5 /* FahmedeenTests.m */; };
+		19E5A50D197EA944009FE7D5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A50B197EA944009FE7D5 /* SWRevealViewController.m */; };
+		19E5A511197EA96D009FE7D5 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A510197EA96D009FE7D5 /* SidebarViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1961D1C61A77568800425562 /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = About.h; sourceTree = "<group>"; };
+		1961D1C71A77568800425562 /* About.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = About.m; sourceTree = "<group>"; };
+		1961D1C91A77569D00425562 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		1961D1CA1A77569D00425562 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		1961D1CC1A7759FC00425562 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		19E5A4D3197EA902009FE7D5 /* Fahmedeen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fahmedeen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19E5A4D6197EA902009FE7D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		19E5A4D8197EA902009FE7D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -45,14 +55,18 @@
 		19E5A4E5197EA902009FE7D5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		19E5A4E6197EA902009FE7D5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		19E5A4E9197EA902009FE7D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		19E5A4EB197EA902009FE7D5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		19E5A4EC197EA902009FE7D5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		19E5A4EB197EA902009FE7D5 /* Bayan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bayan.h; sourceTree = "<group>"; };
+		19E5A4EC197EA902009FE7D5 /* Bayan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bayan.m; sourceTree = "<group>"; };
 		19E5A4EE197EA902009FE7D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		19E5A4F4197EA902009FE7D5 /* FahmedeenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FahmedeenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19E5A4F5197EA902009FE7D5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		19E5A4FD197EA902009FE7D5 /* FahmedeenTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FahmedeenTests-Info.plist"; sourceTree = "<group>"; };
 		19E5A4FF197EA902009FE7D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		19E5A501197EA902009FE7D5 /* FahmedeenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FahmedeenTests.m; sourceTree = "<group>"; };
+		19E5A50B197EA944009FE7D5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = Fahmedeen/SWRevealViewController.m; sourceTree = "<group>"; };
+		19E5A50C197EA944009FE7D5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = Fahmedeen/SWRevealViewController.h; sourceTree = "<group>"; };
+		19E5A50F197EA96D009FE7D5 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
+		19E5A510197EA96D009FE7D5 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1961D1CD1A7759FC00425562 /* AVFoundation.framework in Frameworks */,
 				19E5A4D9197EA902009FE7D5 /* CoreGraphics.framework in Frameworks */,
 				19E5A4DB197EA902009FE7D5 /* UIKit.framework in Frameworks */,
 				19E5A4D7197EA902009FE7D5 /* Foundation.framework in Frameworks */,
@@ -101,6 +116,7 @@
 		19E5A4D5197EA902009FE7D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1961D1CC1A7759FC00425562 /* AVFoundation.framework */,
 				19E5A4D6197EA902009FE7D5 /* Foundation.framework */,
 				19E5A4D8197EA902009FE7D5 /* CoreGraphics.framework */,
 				19E5A4DA197EA902009FE7D5 /* UIKit.framework */,
@@ -115,9 +131,16 @@
 				19E5A4E5197EA902009FE7D5 /* AppDelegate.h */,
 				19E5A4E6197EA902009FE7D5 /* AppDelegate.m */,
 				19E5A4E8197EA902009FE7D5 /* Main.storyboard */,
-				19E5A4EB197EA902009FE7D5 /* ViewController.h */,
-				19E5A4EC197EA902009FE7D5 /* ViewController.m */,
+				19E5A4EB197EA902009FE7D5 /* Bayan.h */,
+				19E5A4EC197EA902009FE7D5 /* Bayan.m */,
+				19E5A50F197EA96D009FE7D5 /* SidebarViewController.h */,
+				19E5A510197EA96D009FE7D5 /* SidebarViewController.m */,
+				1961D1C61A77568800425562 /* About.h */,
+				1961D1C71A77568800425562 /* About.m */,
+				1961D1C91A77569D00425562 /* Contact.h */,
+				1961D1CA1A77569D00425562 /* Contact.m */,
 				19E5A4EE197EA902009FE7D5 /* Images.xcassets */,
+				19E5A50E197EA952009FE7D5 /* Library */,
 				19E5A4DD197EA902009FE7D5 /* Supporting Files */,
 			);
 			path = Fahmedeen;
@@ -150,6 +173,16 @@
 				19E5A4FE197EA902009FE7D5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		19E5A50E197EA952009FE7D5 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				19E5A50B197EA944009FE7D5 /* SWRevealViewController.m */,
+				19E5A50C197EA944009FE7D5 /* SWRevealViewController.h */,
+			);
+			name = Library;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,7 +229,7 @@
 		19E5A4CB197EA902009FE7D5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Zainu Corporation";
 				TargetAttributes = {
 					19E5A4F3197EA902009FE7D5 = {
@@ -249,9 +282,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19E5A4ED197EA902009FE7D5 /* ViewController.m in Sources */,
+				19E5A511197EA96D009FE7D5 /* SidebarViewController.m in Sources */,
+				19E5A4ED197EA902009FE7D5 /* Bayan.m in Sources */,
 				19E5A4E7197EA902009FE7D5 /* AppDelegate.m in Sources */,
+				1961D1C81A77568800425562 /* About.m in Sources */,
+				1961D1CB1A77569D00425562 /* Contact.m in Sources */,
 				19E5A4E3197EA902009FE7D5 /* main.m in Sources */,
+				19E5A50D197EA944009FE7D5 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +342,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -344,7 +380,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -402,7 +437,6 @@
 		19E5A509197EA902009FE7D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fahmedeen.app/Fahmedeen";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -425,7 +459,6 @@
 		19E5A50A197EA902009FE7D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fahmedeen.app/Fahmedeen";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -460,6 +493,7 @@
 				19E5A507197EA902009FE7D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19E5A508197EA902009FE7D5 /* Build configuration list for PBXNativeTarget "FahmedeenTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +502,7 @@
 				19E5A50A197EA902009FE7D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
