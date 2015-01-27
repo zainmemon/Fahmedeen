@@ -26,6 +26,8 @@
 		19E5A502197EA902009FE7D5 /* FahmedeenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A501197EA902009FE7D5 /* FahmedeenTests.m */; };
 		19E5A50D197EA944009FE7D5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A50B197EA944009FE7D5 /* SWRevealViewController.m */; };
 		19E5A511197EA96D009FE7D5 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A510197EA96D009FE7D5 /* SidebarViewController.m */; };
+		B77761351A77C569008C2C00 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B77761341A77C569008C2C00 /* AudioPlayer.m */; };
+		B77761381A77CE96008C2C00 /* audiofile.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B77761371A77CE96008C2C00 /* audiofile.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,9 @@
 		19E5A50C197EA944009FE7D5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = Fahmedeen/SWRevealViewController.h; sourceTree = "<group>"; };
 		19E5A50F197EA96D009FE7D5 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		19E5A510197EA96D009FE7D5 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
+		B77761331A77C569008C2C00 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
+		B77761341A77C569008C2C00 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		B77761371A77CE96008C2C00 /* audiofile.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audiofile.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +133,8 @@
 		19E5A4DC197EA902009FE7D5 /* Fahmedeen */ = {
 			isa = PBXGroup;
 			children = (
+				B77761371A77CE96008C2C00 /* audiofile.mp3 */,
+				B77761361A77C576008C2C00 /* AudioSupport */,
 				19E5A4E5197EA902009FE7D5 /* AppDelegate.h */,
 				19E5A4E6197EA902009FE7D5 /* AppDelegate.m */,
 				19E5A4E8197EA902009FE7D5 /* Main.storyboard */,
@@ -183,6 +190,15 @@
 			);
 			name = Library;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		B77761361A77C576008C2C00 /* AudioSupport */ = {
+			isa = PBXGroup;
+			children = (
+				B77761331A77C569008C2C00 /* AudioPlayer.h */,
+				B77761341A77C569008C2C00 /* AudioPlayer.m */,
+			);
+			name = AudioSupport;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19E5A4EF197EA902009FE7D5 /* Images.xcassets in Resources */,
+				B77761381A77CE96008C2C00 /* audiofile.mp3 in Resources */,
 				19E5A4E1197EA902009FE7D5 /* InfoPlist.strings in Resources */,
 				19E5A4EA197EA902009FE7D5 /* Main.storyboard in Resources */,
 			);
@@ -285,6 +302,7 @@
 				19E5A511197EA96D009FE7D5 /* SidebarViewController.m in Sources */,
 				19E5A4ED197EA902009FE7D5 /* Bayan.m in Sources */,
 				19E5A4E7197EA902009FE7D5 /* AppDelegate.m in Sources */,
+				B77761351A77C569008C2C00 /* AudioPlayer.m in Sources */,
 				1961D1C81A77568800425562 /* About.m in Sources */,
 				1961D1CB1A77569D00425562 /* Contact.m in Sources */,
 				19E5A4E3197EA902009FE7D5 /* main.m in Sources */,

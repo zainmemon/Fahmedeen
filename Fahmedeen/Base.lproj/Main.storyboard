@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E4022" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jLb-Iz-ap3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jLb-Iz-ap3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--Bayan - Bayans-->
+        <!--Bayans-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <viewController id="vXZ-lx-hvc" customClass="Bayan" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FEJ-B5-ZLD"/>
@@ -16,6 +16,51 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cFl-ud-LWA">
+                                <rect key="frame" x="0.0" y="145" width="320" height="45"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zgz-Lz-gTp" userLabel="audioSlider">
+                                        <rect key="frame" x="94" y="7" width="175" height="31"/>
+                                        <connections>
+                                            <action selector="setCurrentTime:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="JWT-3Q-awg"/>
+                                            <action selector="userIsScrubbing:" destination="vXZ-lx-hvc" eventType="touchDragInside" id="BWh-IX-n0B"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="2:56" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4E-fN-T3L" userLabel="timeElapsed">
+                                        <rect key="frame" x="49" y="12" width="34" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="34" id="F4r-l2-TIZ"/>
+                                            <constraint firstAttribute="height" constant="21" id="xo1-vv-jC9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-0:37" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-Uw-3ZJ" userLabel="timeDuration">
+                                        <rect key="frame" x="274" y="12" width="35" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujk-UA-a43" userLabel="audioPlayButton">
+                                        <rect key="frame" x="4" y="1" width="40" height="41"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" backgroundImage="play">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playAudioPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="rSb-2W-DVf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Bayans" id="rpb-1j-6y6">
@@ -23,9 +68,14 @@
                         <barButtonItem key="leftBarButtonItem" image="panel" id="Dr4-MF-Lu0"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="currentTimeSlider" destination="Zgz-Lz-gTp" id="lKc-hb-yvu"/>
+                        <outlet property="duration" destination="f6E-Uw-3ZJ" id="zuG-Xb-QmA"/>
+                        <outlet property="playButton" destination="ujk-UA-a43" id="D2k-LR-ZGy"/>
                         <outlet property="sideBarButton" destination="Dr4-MF-Lu0" id="hsG-7l-LgH"/>
+                        <outlet property="timeElapsed" destination="L4E-fN-T3L" id="3Zq-fO-oGf"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1713" y="-1104"/>
         </scene>
@@ -33,7 +83,7 @@
         <scene sceneID="3Ga-OE-8fn">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="jLb-Iz-ap3" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="weC-Jv-0E6">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -49,7 +99,7 @@
             </objects>
             <point key="canvasLocation" x="-88" y="-333"/>
         </scene>
-        <!--Contact - Contact-->
+        <!--Contact-->
         <scene sceneID="NVg-BC-2du">
             <objects>
                 <viewController id="PIS-uG-YTo" customClass="Contact" sceneMemberID="viewController">
@@ -60,15 +110,23 @@
                     <view key="view" contentMode="scaleToFill" id="eb7-q9-74U">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Wm-el-T1T">
+                                <rect key="frame" x="0.0" y="24" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Contact" id="DA7-Un-sT5"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Contact" id="ly5-8B-AJn"/>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="ly5-8B-AJn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHI-iv-ZKR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="568" y="-333"/>
         </scene>
-        <!--About - About-->
+        <!--About-->
         <scene sceneID="RS6-0U-vmz">
             <objects>
                 <viewController id="NO2-ws-P75" customClass="About" sceneMemberID="viewController">
@@ -79,13 +137,41 @@
                     <view key="view" contentMode="scaleToFill" id="Zcr-Wb-vX4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxZ-nx-934">
+                                <rect key="frame" x="0.0" y="24" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="About" id="uCR-xC-0Wf"/>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxh-4O-ETE">
+                                <rect key="frame" x="16" y="82" width="288" height="386"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">A Hadith about the forewarning of the day of Judgement states that, when no Aalim would be left, then people will appoint the uneducated as their pious religious guides. These guides when asked about something would give 'Fataawa' without knowledge and thus would mislead themselves and others.
+
+Our Holy Prophet (SAW) declared lack of knowledge and appointing of uneducated people as guides to be one of the major Fitnah near the day of Judgement. The light of knowledge is the only answer to the shadows of ignorance. Hence there is an urgent need to seek guidance from authentic scholars so that our lives are managed according to the Shariah. This was the way of the Sahabah (RAA) and Alhamdulilah is still practised till this day.
+
+To achieve this objective our website www.fahmedeen.org offers a service of regularly updated audio bayans which include Juma Bayans, Islahi Majlis Held on Sunday at Masjid Bait us Salam, (Defence, Phase IV, Karachi) and other bayans of Maulana Abdus Sattar (Imam and Khateeb Masjid Bait us Salam) and special bayans by other eminent religious scholars like Shaikh ul Islam Mufti Taqi Usmani Sahab. The site also provides access to the Ramdhan Bayans by Maulana Abdus Sattar and offers a beautiful collection of Nazams.
+
+We pray to Almighty Allah to accept this effort from our behalf and make it a source of guidance for those who are astray and a source of reward for us in the Hereafter. Ameen</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fX0-bm-nwK" firstAttribute="top" secondItem="Sxh-4O-ETE" secondAttribute="bottom" constant="20" id="2Aa-IF-bRn"/>
+                            <constraint firstItem="Sxh-4O-ETE" firstAttribute="top" secondItem="mxZ-nx-934" secondAttribute="bottom" constant="14" id="ZLo-Pw-lsv"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="About" id="whJ-Vp-nk2"/>
+                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="whJ-Vp-nk2"/>
+                    <connections>
+                        <outlet property="aboutContent" destination="Sxh-4O-ETE" id="V8A-6k-T8U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eFO-Aw-EYO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="568" y="362"/>
+            <point key="canvasLocation" x="568" y="376"/>
         </scene>
         <!--Sidebar View Controller-->
         <scene sceneID="SHp-6m-9WE">
@@ -105,7 +191,6 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="FPb-bI-H4C">
                                             <rect key="frame" x="236" y="15" width="12" height="14"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -139,7 +224,7 @@
             </objects>
             <point key="canvasLocation" x="1158" y="-715"/>
         </scene>
-        <!--Reveal View Controller - Bayans-->
+        <!--Reveal View Controller-->
         <scene sceneID="nPj-eP-9DS">
             <objects>
                 <viewController storyboardIdentifier="reveal_time" id="mrN-uL-fgG" customClass="SWRevealViewController" sceneMemberID="viewController">
@@ -152,7 +237,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Bayans" id="4uV-NA-TmX"/>
+                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="4uV-NA-TmX"/>
                     <connections>
                         <segue destination="6pz-Kn-WDy" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegue" id="2fW-bZ-DdG"/>
                         <segue destination="0oo-Oc-bd5" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegue" id="0vw-hi-efg"/>
@@ -166,6 +251,7 @@
     <resources>
         <image name="arrow" width="19" height="26"/>
         <image name="panel" width="28" height="20"/>
+        <image name="play" width="66" height="65"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
