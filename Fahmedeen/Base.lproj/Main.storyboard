@@ -91,8 +91,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="mrN-uL-fgG" kind="relationship" relationship="viewControllers" id="spV-W6-lDn"/>
-                        <segue destination="NO2-ws-P75" kind="relationship" relationship="viewControllers" id="53G-tp-nTz"/>
-                        <segue destination="PIS-uG-YTo" kind="relationship" relationship="viewControllers" id="F6h-bP-iYK"/>
+                        <segue destination="UQk-py-epg" kind="relationship" relationship="viewControllers" id="53G-tp-nTz"/>
+                        <segue destination="EW7-Eh-v0U" kind="relationship" relationship="viewControllers" id="F6h-bP-iYK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JkQ-W6-RuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -111,20 +111,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Wm-el-T1T">
-                                <rect key="frame" x="0.0" y="24" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="Contact" id="DA7-Un-sT5"/>
-                                </items>
-                            </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UaT-YJ-6Sn">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="ly5-8B-AJn"/>
+                    <navigationItem key="navigationItem" title="Contact" id="67Y-ph-Sw3"/>
+                    <connections>
+                        <outlet property="mapView" destination="UaT-YJ-6Sn" id="HkR-bj-nsZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHI-iv-ZKR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="568" y="-333"/>
+            <point key="canvasLocation" x="1100" y="-333"/>
         </scene>
         <!--About-->
         <scene sceneID="RS6-0U-vmz">
@@ -138,22 +138,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxZ-nx-934">
-                                <rect key="frame" x="0.0" y="24" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="About" id="uCR-xC-0Wf"/>
-                                </items>
-                            </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxh-4O-ETE">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxh-4O-ETE">
                                 <rect key="frame" x="16" y="82" width="288" height="386"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">A Hadith about the forewarning of the day of Judgement states that, when no Aalim would be left, then people will appoint the uneducated as their pious religious guides. These guides when asked about something would give 'Fataawa' without knowledge and thus would mislead themselves and others.
+                                <string key="text">A Hadith about the forewarning of the day of Judgement states that, when no Aalim would be left, then people will appoint the uneducated as their pious religious guides. These guides when asked about something would give 'Fataawa' without knowledge and thus would mislead themselves and others.
 
 Our Holy Prophet (SAW) declared lack of knowledge and appointing of uneducated people as guides to be one of the major Fitnah near the day of Judgement. The light of knowledge is the only answer to the shadows of ignorance. Hence there is an urgent need to seek guidance from authentic scholars so that our lives are managed according to the Shariah. This was the way of the Sahabah (RAA) and Alhamdulilah is still practised till this day.
 
 To achieve this objective our website www.fahmedeen.org offers a service of regularly updated audio bayans which include Juma Bayans, Islahi Majlis Held on Sunday at Masjid Bait us Salam, (Defence, Phase IV, Karachi) and other bayans of Maulana Abdus Sattar (Imam and Khateeb Masjid Bait us Salam) and special bayans by other eminent religious scholars like Shaikh ul Islam Mufti Taqi Usmani Sahab. The site also provides access to the Ramdhan Bayans by Maulana Abdus Sattar and offers a beautiful collection of Nazams.
 
-We pray to Almighty Allah to accept this effort from our behalf and make it a source of guidance for those who are astray and a source of reward for us in the Hereafter. Ameen</mutableString>
+We pray to Almighty Allah to accept this effort from our behalf and make it a source of guidance for those who are astray and a source of reward for us in the Hereafter. Ameen</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -161,17 +155,16 @@ We pray to Almighty Allah to accept this effort from our behalf and make it a so
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fX0-bm-nwK" firstAttribute="top" secondItem="Sxh-4O-ETE" secondAttribute="bottom" constant="20" id="2Aa-IF-bRn"/>
-                            <constraint firstItem="Sxh-4O-ETE" firstAttribute="top" secondItem="mxZ-nx-934" secondAttribute="bottom" constant="14" id="ZLo-Pw-lsv"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="whJ-Vp-nk2"/>
+                    <navigationItem key="navigationItem" title="About" id="T04-tG-up6"/>
                     <connections>
                         <outlet property="aboutContent" destination="Sxh-4O-ETE" id="V8A-6k-T8U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eFO-Aw-EYO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="568" y="376"/>
+            <point key="canvasLocation" x="1100" y="376"/>
         </scene>
         <!--Sidebar View Controller-->
         <scene sceneID="SHp-6m-9WE">
@@ -222,7 +215,7 @@ We pray to Almighty Allah to accept this effort from our behalf and make it a so
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wbn-xe-GdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1158" y="-715"/>
+            <point key="canvasLocation" x="1690" y="-715"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="nPj-eP-9DS">
@@ -246,6 +239,44 @@ We pray to Almighty Allah to accept this effort from our behalf and make it a so
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KdK-OD-56m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="568" y="-1030"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yeJ-fH-mfU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EW7-Eh-v0U" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="ly5-8B-AJn"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xqC-R3-f3j">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PIS-uG-YTo" kind="relationship" relationship="rootViewController" id="xtL-uD-new"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QLw-rJ-0TA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="568" y="-333"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XIC-ms-g6b">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UQk-py-epg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="whJ-Vp-nk2"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qJv-LB-cae">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NO2-ws-P75" kind="relationship" relationship="rootViewController" id="vWX-P3-zSs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zpP-8j-T7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="568" y="376"/>
         </scene>
     </scenes>
     <resources>

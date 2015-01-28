@@ -26,6 +26,7 @@
 		19E5A502197EA902009FE7D5 /* FahmedeenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A501197EA902009FE7D5 /* FahmedeenTests.m */; };
 		19E5A50D197EA944009FE7D5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A50B197EA944009FE7D5 /* SWRevealViewController.m */; };
 		19E5A511197EA96D009FE7D5 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A510197EA96D009FE7D5 /* SidebarViewController.m */; };
+		B770477D1A7922400089911F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B770477C1A7922400089911F /* MapKit.framework */; };
 		B77761351A77C569008C2C00 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B77761341A77C569008C2C00 /* AudioPlayer.m */; };
 		B77761381A77CE96008C2C00 /* audiofile.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B77761371A77CE96008C2C00 /* audiofile.mp3 */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		19E5A50C197EA944009FE7D5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = Fahmedeen/SWRevealViewController.h; sourceTree = "<group>"; };
 		19E5A50F197EA96D009FE7D5 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		19E5A510197EA96D009FE7D5 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
+		B770477C1A7922400089911F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B77761331A77C569008C2C00 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
 		B77761341A77C569008C2C00 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
 		B77761371A77CE96008C2C00 /* audiofile.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audiofile.mp3; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B770477D1A7922400089911F /* MapKit.framework in Frameworks */,
 				1961D1CD1A7759FC00425562 /* AVFoundation.framework in Frameworks */,
 				19E5A4D9197EA902009FE7D5 /* CoreGraphics.framework in Frameworks */,
 				19E5A4DB197EA902009FE7D5 /* UIKit.framework in Frameworks */,
@@ -121,6 +124,7 @@
 		19E5A4D5197EA902009FE7D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B770477C1A7922400089911F /* MapKit.framework */,
 				1961D1CC1A7759FC00425562 /* AVFoundation.framework */,
 				19E5A4D6197EA902009FE7D5 /* Foundation.framework */,
 				19E5A4D8197EA902009FE7D5 /* CoreGraphics.framework */,
