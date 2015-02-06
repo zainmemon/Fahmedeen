@@ -8,12 +8,17 @@
 
 #import "Bayan.h"
 #import "SWRevealViewController.h"
+#import "WebService.h"
+#import "Constants.h"
 
 @interface Bayan ()
 
 @end
 
 @implementation Bayan
+{
+    NSArray * AllBayans;
+}
 
 - (void)viewDidLoad
 {
@@ -23,12 +28,23 @@
     _sideBarButton.target = self.revealViewController;
     _sideBarButton.action = @selector(revealToggle:);
     
+    self.BayanList.delegate = self;
+    self.BayanList.dataSource = self;
+    
     [super viewDidLoad];
     self.audioPlayer = [[AudioPlayer alloc] init];
     //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     //    [[AVAudioSession sharedInstance] setActive: YES error: nil];
     //    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [self setupAudioPlayer:@"audiofile"];
+    
+    WebService *BayanList = [[WebService alloc] init];
+    AllBayans = [[NSMutableArray alloc] init];
+    //self.title = @"Resturants";
+    AllBayans = [BayanList FilePath:BASEURL VENDORS_NEAR_ME parameterOne:@"tafseer" parameterTwo:nil];
+    
+    [self.BayanList reloadData];
+
 }
 
 
@@ -138,11 +154,47 @@
 }
 
 
+//-(void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
+//{
+//    // Set the title of navigation bar by using the menu items
+//    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//    
+//    if ([segue.identifier isEqualToString:@"show"]) {
+//        Bayan *vendor = (Bayan*)segue.destinationViewController;
+//        vendor.title = [[self.menuItems objectAtIndex:indexPath.row] capitalizedString];
+//    }
+//    
+//}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [AllBayans count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = @"listitem";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    cell.textLabel.text = [AllBayans objectAtIndex:indexPath.row];
+    
+    return cell;
+}
+
 
 
 

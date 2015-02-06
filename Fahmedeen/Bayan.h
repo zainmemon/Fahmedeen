@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "AudioPlayer.h"
 
-@interface Bayan : UIViewController
+@interface Bayan : UIViewController<UITableViewDelegate,UITableViewDataSource>
+
 
 @property (nonatomic, strong) AudioPlayer *audioPlayer;
 
@@ -25,5 +26,6 @@
 @property NSTimer *timer;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
+@property (weak, nonatomic) IBOutlet UITableView *BayanList;
 
 @end

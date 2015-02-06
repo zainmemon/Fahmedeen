@@ -8,6 +8,7 @@
 
 #import "SidebarViewController.h"
 #import "SWRevealViewController.h"
+#import "Bayan.h"
 
 @interface SidebarViewController ()
 
@@ -28,8 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _menuItems = @[@"Sunday Bayanaat", @"Friday Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat", @"Nazmain", @"Others"];
+    _menuItems = @[@"Sunday Bayanaat", @" Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat", @"Nazmain", @"Others"];
     
 }
 
@@ -39,8 +39,8 @@
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     
     if ([segue.identifier isEqualToString:@"show"]) {
-//        vendors *vendor = (vendors*)segue.destinationViewController;
-//        vendor.title = [[self.menuItems objectAtIndex:indexPath.row] capitalizedString];
+        Bayan *vendor = (Bayan*)segue.destinationViewController;
+        vendor.title = [[self.menuItems objectAtIndex:indexPath.row] capitalizedString];
     }
     
     if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {

@@ -10,6 +10,7 @@
 		1961D1C81A77568800425562 /* About.m in Sources */ = {isa = PBXBuildFile; fileRef = 1961D1C71A77568800425562 /* About.m */; };
 		1961D1CB1A77569D00425562 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 1961D1CA1A77569D00425562 /* Contact.m */; };
 		1961D1CD1A7759FC00425562 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1961D1CC1A7759FC00425562 /* AVFoundation.framework */; };
+		199B87AD1A850B11009E43AC /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 199B87AC1A850B11009E43AC /* WebService.m */; };
 		19E5A4D7197EA902009FE7D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E5A4D6197EA902009FE7D5 /* Foundation.framework */; };
 		19E5A4D9197EA902009FE7D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E5A4D8197EA902009FE7D5 /* CoreGraphics.framework */; };
 		19E5A4DB197EA902009FE7D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E5A4DA197EA902009FE7D5 /* UIKit.framework */; };
@@ -47,6 +48,9 @@
 		1961D1C91A77569D00425562 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		1961D1CA1A77569D00425562 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		1961D1CC1A7759FC00425562 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		199B87AB1A850B11009E43AC /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
+		199B87AC1A850B11009E43AC /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
+		199B87AE1A850B81009E43AC /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		19E5A4D3197EA902009FE7D5 /* Fahmedeen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fahmedeen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19E5A4D6197EA902009FE7D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		19E5A4D8197EA902009FE7D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -141,6 +145,9 @@
 				B77761361A77C576008C2C00 /* AudioSupport */,
 				19E5A4E5197EA902009FE7D5 /* AppDelegate.h */,
 				19E5A4E6197EA902009FE7D5 /* AppDelegate.m */,
+				199B87AB1A850B11009E43AC /* WebService.h */,
+				199B87AC1A850B11009E43AC /* WebService.m */,
+				199B87AE1A850B81009E43AC /* Constants.h */,
 				19E5A4E8197EA902009FE7D5 /* Main.storyboard */,
 				19E5A4EB197EA902009FE7D5 /* Bayan.h */,
 				19E5A4EC197EA902009FE7D5 /* Bayan.m */,
@@ -303,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				199B87AD1A850B11009E43AC /* WebService.m in Sources */,
 				19E5A511197EA96D009FE7D5 /* SidebarViewController.m in Sources */,
 				19E5A4ED197EA902009FE7D5 /* Bayan.m in Sources */,
 				19E5A4E7197EA902009FE7D5 /* AppDelegate.m in Sources */,
