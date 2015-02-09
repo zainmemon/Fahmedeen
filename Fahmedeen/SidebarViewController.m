@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _menuItems = @[@"Sunday Bayanaat", @" Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat", @"Nazmain", @"Others"];
+    _menuItems = @[@"Sunday Bayanaat", @"Friday Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat", @"Nazmain", @"Others"];
     
 }
 
@@ -43,10 +43,12 @@
         vendor.title = [[self.menuItems objectAtIndex:indexPath.row] capitalizedString];
     }
     
-    if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
+    if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] )
+    {
         SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
         
-        swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
+        swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc)
+        {
             
             UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
             [navController setViewControllers: @[dvc] animated: NO ];

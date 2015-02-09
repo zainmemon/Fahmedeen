@@ -18,14 +18,14 @@
     
     //NSString * storedsession = [[NSUserDefaults standardUserDefaults] stringForKey:@"college"];
     
-    NSString *myRequestString = [NSString stringWithFormat:@"?type=%@&parameterTwo=%@",parameterOne,parameterTwo];
+    NSString *myRequestString = [NSString stringWithFormat:@"type=%@&parameterTwo=%@",parameterOne,parameterTwo];
     
     // Create Data from request
     NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: jsonFileUrl];
     // set Request Type
     NSError *err = nil;
-    [request setHTTPMethod: @"GET"];
+    [request setHTTPMethod: @"POST"];
     // Set content-type
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
     // Set Request Body

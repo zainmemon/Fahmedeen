@@ -41,7 +41,7 @@
     WebService *BayanList = [[WebService alloc] init];
     AllBayans = [[NSMutableArray alloc] init];
     //self.title = @"Resturants";
-    AllBayans = [BayanList FilePath:BASEURL VENDORS_NEAR_ME parameterOne:@"tafseer" parameterTwo:nil];
+    AllBayans = [BayanList FilePath:BASEURL VENDORS_NEAR_ME parameterOne:@"sunday" parameterTwo:nil];
     
     [self.BayanList reloadData];
 
@@ -186,16 +186,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSString *CellIdentifier = @"listitem";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    UITableViewCell *cell;
+    if (!cell)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.textLabel.text = [AllBayans objectAtIndex:indexPath.row];
-    
     return cell;
 }
-
-
-
 
 @end
