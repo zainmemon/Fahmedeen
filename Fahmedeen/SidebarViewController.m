@@ -29,8 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _menuItems = @[@"Sunday Bayanaat", @"Friday Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat", @"Nazmain", @"Others"];
     
+    _menuItems = @[@"Sunday Bayanaat", @"Friday Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat", @"Nazmain", @"Others"];
 }
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
@@ -39,8 +39,37 @@
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     
     if ([segue.identifier isEqualToString:@"show"]) {
-        Bayan *vendor = (Bayan*)segue.destinationViewController;
-        vendor.title = [[self.menuItems objectAtIndex:indexPath.row] capitalizedString];
+        Bayan *b = (Bayan*)segue.destinationViewController;
+        b.title = [[self.menuItems objectAtIndex:indexPath.row] capitalizedString];
+        
+        if(indexPath.row ==0)
+        {
+            b.bayanCategory = @"sunday";
+        }
+        else if (indexPath.row == 1)
+        {
+            b.bayanCategory = @"bayans";
+        }
+        else if (indexPath.row == 2)
+        {
+            b.bayanCategory = @"morning";
+        }
+        else if (indexPath.row == 3)
+        {
+            b.bayanCategory = @"tusmani";
+        }
+        else if (indexPath.row == 4)
+        {
+            b.bayanCategory = @"ramdhan";
+        }
+        else if (indexPath.row == 5)
+        {
+            b.bayanCategory = @"nazam";
+        }
+        else
+        {
+            b.bayanCategory = @"others";
+        }
     }
     
     if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] )
@@ -80,11 +109,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = @"listitem";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
     cell.textLabel.text = [self.menuItems objectAtIndex:indexPath.row];
-    
     return cell;
 }
 

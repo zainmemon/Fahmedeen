@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E4022" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mrN-uL-fgG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jLb-Iz-ap3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--Bayan - Bayans-->
+        <!--Bayans-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="Bayan" sceneMemberID="viewController">
@@ -16,18 +17,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cFl-ud-LWA">
-                                <rect key="frame" x="0.0" y="99" width="320" height="45"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cFl-ud-LWA">
+                                <rect key="frame" x="0.0" y="64" width="320" height="45"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zgz-Lz-gTp" userLabel="audioSlider">
-                                        <rect key="frame" x="94" y="7" width="175" height="31"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zgz-Lz-gTp" userLabel="audioSlider">
+                                        <rect key="frame" x="88" y="7" width="175" height="31"/>
                                         <connections>
                                             <action selector="setCurrentTime:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="JWT-3Q-awg"/>
                                             <action selector="userIsScrubbing:" destination="vXZ-lx-hvc" eventType="touchDragInside" id="BWh-IX-n0B"/>
                                         </connections>
                                     </slider>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2:56" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4E-fN-T3L" userLabel="timeElapsed">
-                                        <rect key="frame" x="49" y="12" width="34" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4E-fN-T3L" userLabel="timeElapsed">
+                                        <rect key="frame" x="40" y="12" width="44" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="34" id="F4r-l2-TIZ"/>
                                             <constraint firstAttribute="height" constant="21" id="xo1-vv-jC9"/>
@@ -35,14 +36,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-0:37" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-Uw-3ZJ" userLabel="timeDuration">
-                                        <rect key="frame" x="274" y="12" width="35" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-Uw-3ZJ" userLabel="timeDuration">
+                                        <rect key="frame" x="267" y="12" width="48" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujk-UA-a43" userLabel="audioPlayButton">
-                                        <rect key="frame" x="4" y="1" width="40" height="41"/>
+                                        <rect key="frame" x="2" y="1" width="40" height="41"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" backgroundImage="play">
@@ -59,13 +60,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cFS-jK-QCW">
-                                <rect key="frame" x="0.0" y="168" width="320" height="400"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cFS-jK-QCW">
+                                <rect key="frame" x="0.0" y="109" width="320" height="466"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cFS-jK-QCW" firstAttribute="top" secondItem="cFl-ud-LWA" secondAttribute="bottom" constant="10" id="2DF-V8-szB"/>
+                            <constraint firstItem="lgr-gW-hal" firstAttribute="top" secondItem="cFS-jK-QCW" secondAttribute="bottom" constant="50" id="Sf7-pl-dpn"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bayans" id="rpb-1j-6y6">
                         <barButtonItem key="backBarButtonItem" title="Back" id="duf-zz-0Sq"/>
@@ -104,7 +108,7 @@
             </objects>
             <point key="canvasLocation" x="-88" y="-333"/>
         </scene>
-        <!--Contact - Contact-->
+        <!--Contact-->
         <scene sceneID="NVg-BC-2du">
             <objects>
                 <viewController id="PIS-uG-YTo" customClass="Contact" sceneMemberID="viewController">
@@ -131,7 +135,7 @@
             </objects>
             <point key="canvasLocation" x="1100" y="-333"/>
         </scene>
-        <!--About - About-->
+        <!--About-->
         <scene sceneID="RS6-0U-vmz">
             <objects>
                 <viewController id="NO2-ws-P75" customClass="About" sceneMemberID="viewController">
@@ -156,6 +160,15 @@ We pray to Almighty Allah to accept this effort from our behalf and make it a so
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gmm-wz-FNR">
+                                <rect key="frame" x="110" y="95" width="101" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playAudio:" destination="NO2-ws-P75" eventType="touchUpInside" id="NYT-WO-RBT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>

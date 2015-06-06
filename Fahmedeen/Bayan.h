@@ -27,5 +27,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 @property (weak, nonatomic) IBOutlet UITableView *BayanList;
+@property (weak, nonatomic) NSString *bayanCategory;
 
 @end
