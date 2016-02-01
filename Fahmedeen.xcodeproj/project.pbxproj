@@ -186,7 +186,6 @@
 				19E5A4E8197EA902009FE7D5 /* Main.storyboard */,
 				19E5A4E5197EA902009FE7D5 /* AppDelegate.h */,
 				19E5A4E6197EA902009FE7D5 /* AppDelegate.m */,
-				19E5A4E8197EA902009FE7D5 /* Main.storyboard */,
 				199B87AB1A850B11009E43AC /* WebService.h */,
 				199B87AC1A850B11009E43AC /* WebService.m */,
 				199B87AE1A850B81009E43AC /* Constants.h */,

@@ -9,40 +9,16 @@
 #import "AudioPlayer.h"
 
 @implementation AudioPlayer
-{
-    UIActivityIndicatorView *loader;
-}
 
 /*
  * Init the Player with Filename and FileExtension
  */
 - (void)initPlayer:(NSString*) audioFile fileExtension:(NSString*)fileExtension
 {
-    loader = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(140,200,40,50)];
-    [loader setBackgroundColor:[UIColor grayColor]];
-    [loader setColor:[UIColor whiteColor]];
-    [self.view addSubview:loader];
-    
-    dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
-    dispatch_async(myqueue, ^(void) {
-        
-        [loader startAnimating];
-        NSURL *audioFileLocationURL = [NSURL URLWithString:@"http://fahmedeen.org/sunday/EmankaySamraat(08-02-2015).mp3"];
-        NSData *soundData = [NSData dataWithContentsOfURL:audioFileLocationURL];
-        NSError *error;
-        self.audioPlayer = [[AVAudioPlayer alloc] initWithData:soundData error:&error];
-        [self.audioPlayer play];
-        //NSString *subString = [@"" substringToIndex:rangeOfYourString.location];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // Update UI on main queue
-            
-            //[loader stopAnimating];
-            
-        });
-        
-    });
-
-    }
+    NSURL *audioFileLocationURL = [[NSBundle mainBundle] URLForResource:audioFile withExtension:fileExtension];
+    NSError *error;
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioFileLocationURL error:&error];
+}
 
 /*
  * Simply fire the play Event

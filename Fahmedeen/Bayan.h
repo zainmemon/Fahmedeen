@@ -27,10 +27,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 @property (weak, nonatomic) IBOutlet UITableView *BayanList;
-<<<<<<< HEAD
 - (IBAction)sliderChange:(id)sender;
-=======
-@property (weak, nonatomic) NSString *bayanCategory;
->>>>>>> origin/master
 
 @end

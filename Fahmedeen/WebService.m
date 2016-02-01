@@ -20,11 +20,7 @@
     
     //NSString * storedsession = [[NSUserDefaults standardUserDefaults] stringForKey:@"college"];
     
-<<<<<<< HEAD
    // NSString *myRequestString = [NSString stringWithFormat:@"?type=%@",parameterOne];
-=======
-    NSString *myRequestString = [NSString stringWithFormat:@"type=%@&parameterTwo=%@",parameterOne,parameterTwo];
->>>>>>> origin/master
     
     // Create Data from request
  //   NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
@@ -32,7 +28,7 @@
     
     // set Request Type
     NSError *err = nil;
-    [request setHTTPMethod: @"POST"];
+    [request setHTTPMethod: @"GET"];
     // Set content-type
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type:text/html"];
     // Set Request Body
