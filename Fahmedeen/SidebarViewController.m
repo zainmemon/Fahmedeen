@@ -30,16 +30,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+<<<<<<< HEAD
     _menuItems = @[@"",@"Sunday Bayanaat", @"Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat",@"Others"];
     _type = @[@"",@"sunday",@"bayans",@"morning",@"tusmani",@"ramdhan",@"others"];
     
     self.sidebarTableView.tableFooterView = [UIView new];
+=======
+    
+    _menuItems = @[@"Sunday Bayanaat", @"Friday Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat", @"Nazmain", @"Others"];
+>>>>>>> origin/master
 }
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
 {
     // Set the title of navigation bar by using the menu items
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+<<<<<<< HEAD
     if (indexPath.row > 0) {
         if ([segue.identifier isEqualToString:@"show"]) {
             Bayan *b = (Bayan*)segue.destinationViewController;
@@ -49,6 +55,49 @@
         
         if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
             SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
+=======
+    
+    if ([segue.identifier isEqualToString:@"show"]) {
+        Bayan *b = (Bayan*)segue.destinationViewController;
+        b.title = [[self.menuItems objectAtIndex:indexPath.row] capitalizedString];
+        
+        if(indexPath.row ==0)
+        {
+            b.bayanCategory = @"sunday";
+        }
+        else if (indexPath.row == 1)
+        {
+            b.bayanCategory = @"bayans";
+        }
+        else if (indexPath.row == 2)
+        {
+            b.bayanCategory = @"morning";
+        }
+        else if (indexPath.row == 3)
+        {
+            b.bayanCategory = @"tusmani";
+        }
+        else if (indexPath.row == 4)
+        {
+            b.bayanCategory = @"ramdhan";
+        }
+        else if (indexPath.row == 5)
+        {
+            b.bayanCategory = @"nazam";
+        }
+        else
+        {
+            b.bayanCategory = @"others";
+        }
+    }
+    
+    if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] )
+    {
+        SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
+        
+        swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc)
+        {
+>>>>>>> origin/master
             
             swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
                 
@@ -84,11 +133,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = @"listitem";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
     cell.textLabel.text = [self.menuItems objectAtIndex:indexPath.row];
-    
     return cell;
 }
 

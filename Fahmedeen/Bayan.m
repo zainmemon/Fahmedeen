@@ -13,6 +13,9 @@
 #import "bayanCell.h"
 
 @interface Bayan ()
+{
+    UIActivityIndicatorView *loader;
+}
 
 @end
 
@@ -27,10 +30,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    loader = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(100,100,40,50)];
+    [loader setBackgroundColor:[UIColor grayColor]];
+    [loader setColor:[UIColor whiteColor]];
+    [self.view addSubview:loader];
+    
     _sideBarButton.target = self.revealViewController;
     _sideBarButton.action = @selector(revealToggle:);
 
     
+
     self.audioPlayer = [[AVPlayer alloc] init];
 //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 //    [[AVAudioSession sharedInstance] setActive: YES error: nil];
@@ -47,34 +56,49 @@
     
     NSLog(@"the type is %@", self.type);
     AllBayans = [BayanList FilePath:BASEURL BAYAN_PHP_FILE parameterOne:self.type parameterTwo:@""];
+
+    self.BayanList.delegate = self;
+    self.BayanList.dataSource = self;
+    
+    [super viewDidLoad];
+    self.audioPlayer = [[AudioPlayer alloc] init];
+    //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    //    [[AVAudioSession sharedInstance] setActive: YES error: nil];
+    //    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    //[self setupAudioPlayer:@"audiofile"];
+    
+    WebService *BayanList = [[WebService alloc] init];
+    AllBayans = [[NSMutableArray alloc] init];
+    //self.title = @"Resturants";
+    if(self.bayanCategory == nil)
+    {
+        self.bayanCategory = @"";
+    }
+    AllBayans = [BayanList FilePath:BASEURL VENDORS_NEAR_ME parameterOne:self.bayanCategory parameterTwo:nil];
     
     [self.BayanList reloadData];
 
 }
 
 
-/*
- * Setup the AudioPlayer with
- * Filename and FileExtension like mp3
- * Loading audioFile and sets the time Labels
- */
-//- (void)setupAudioPlayer:(NSString*)fileName
-//{
-//    //insert Filename & FileExtension
-//    NSString *fileExtension = @"mp3";
-//    
-//    //init the Player to get file properties to set the time labels
-//    [self.audioPlayer initPlayer:fileName fileExtension:fileExtension];
-//    self.currentTimeSlider.maximumValue = [self.audioPlayer getAudioDuration];
-//    
-//    //init the current timedisplay and the labels. if a current time was stored
-//    //for this player then take it and update the time display
-//    self.timeElapsed.text = @"0:00";
-//    
-//    self.duration.text = [NSString stringWithFormat:@"-%@",
-//                          [self.audioPlayer timeFormat:[self.audioPlayer getAudioDuration]]];
-//    
-//}
+
+- (void)setupAudioPlayer:(NSString*)fileName
+{
+    //insert Filename & FileExtension
+    NSString *fileExtension = @"mp3";
+    
+    //init the Player to get file properties to set the time labels
+    [self.audioPlayer initPlayer:fileName fileExtension:fileExtension];
+    self.currentTimeSlider.maximumValue = [self.audioPlayer getAudioDuration];
+    
+    //init the current timedisplay and the labels. if a current time was stored
+    //for this player then take it and update the time display
+    self.timeElapsed.text = @"0:00";
+    
+    self.duration.text = [NSString stringWithFormat:@"-%@",
+                          [self.audioPlayer timeFormat:[self.audioPlayer getAudioDuration]]];
+}
+
 
 /*
  * PlayButton is pressed
@@ -163,19 +187,6 @@
  * to avoid slider update while dragging the slider
  */
 
-
-//-(void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
-//{
-//    // Set the title of navigation bar by using the menu items
-//    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//    
-//    if ([segue.identifier isEqualToString:@"show"]) {
-//        Bayan *vendor = (Bayan*)segue.destinationViewController;
-//        vendor.title = [[self.menuItems objectAtIndex:indexPath.row] capitalizedString];
-//    }
-//    
-//}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -196,6 +207,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     NSString *CellIdentifier = @"bayanCellIdentifier";
     
     bayanCell *cell;
@@ -210,11 +222,21 @@
     [cell.bayanPlayButton addTarget:self action:@selector(playSelectedRadio:) forControlEvents:UIControlEventTouchUpInside];
     cell.bayanPlayButton.tag = indexPath.row;
 
+
+    
+    NSString *CellIdentifier = @"listitem";
+    UITableViewCell *cell;
+    if (!cell)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+
+    cell.textLabel.text = [AllBayans objectAtIndex:indexPath.row];
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+<<<<<<< HEAD
 }
 
 - (void)playSelectedRadio:(id)sender
@@ -284,3 +306,27 @@
 
 }
 @end
+=======
+    
+    
+    dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
+    dispatch_async(myqueue, ^(void) {
+        
+        [loader startAnimating];
+        [self setupAudioPlayer:@"audiofile"];
+        //NSString *subString = [@"" substringToIndex:rangeOfYourString.location];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Update UI on main queue
+            [self playAudioPressed:self.playButton];
+            [loader stopAnimating];
+            
+        });
+        
+    });
+
+    
+    
+}
+
+@end
+>>>>>>> origin/master
