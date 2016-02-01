@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 Zainu Corporation. All rights reserved.
 //
 
-#ifndef Food_Application_Constants_h
-#define Food_Application_Constants_h
+#ifndef Fahmedeen_Constants_h
+#define Fahmedeen_Constants_h
 #define BASEURL @"http://www.fahmedeen.org/iphone-app/"
-#define VENDORS_NEAR_ME @"bayan.php"
-
+#define BAYAN_PHP_FILE @"bayan.php"
 
 #endif

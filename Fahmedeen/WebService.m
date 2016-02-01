@@ -12,33 +12,41 @@
 
 -(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo parameterThree:(NSString*)parameterThree parameterFour:(NSString*)parameterFour
 {
-    NSURL *jsonFileUrl = [NSURL URLWithString:filepath];
+    
+    NSString *myRequestString = [filepath stringByAppendingString:[NSString stringWithFormat:@"?type=%@",parameterOne]];
+    NSURL *jsonFileUrl = [NSURL URLWithString:myRequestString];
     
     // Create the NSURLConnection
     
     //NSString * storedsession = [[NSUserDefaults standardUserDefaults] stringForKey:@"college"];
     
-    NSString *myRequestString = [NSString stringWithFormat:@"?type=%@&parameterTwo=%@",parameterOne,parameterTwo];
+   // NSString *myRequestString = [NSString stringWithFormat:@"?type=%@",parameterOne];
     
     // Create Data from request
-    NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
+ //   NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: jsonFileUrl];
+    
     // set Request Type
     NSError *err = nil;
     [request setHTTPMethod: @"GET"];
     // Set content-type
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type:text/html"];
     // Set Request Body
-    [request setHTTPBody: myRequestData];
+    //[request setHTTPBody: myRequestData];
     // Now send a request and get Response
     NSData *returnData = [NSURLConnection sendSynchronousRequest: request returningResponse: nil error: nil];
     // Log Response
     NSString *response = [[NSString alloc] initWithBytes:[returnData bytes] length:[returnData length] encoding:NSUTF8StringEncoding];
     
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: returnData options: NSJSONReadingMutableContainers error: &err];
+    NSArray *jsonArray;
     
-    NSLog(@"Response String: %@",response);
-    NSLog(@"JsonArray %@", jsonArray);
+    if (returnData != nil)
+    {
+        jsonArray = [NSJSONSerialization JSONObjectWithData: returnData options: NSJSONReadingMutableContainers error: &err];
+    }
+    
+//    NSLog(@"Response String: %@",response);
+//    NSLog(@"JsonArray %@", jsonArray);
     
     //[NSURLConnection connectionWithRequest:request delegate:self];
     

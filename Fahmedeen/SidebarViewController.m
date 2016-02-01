@@ -13,6 +13,7 @@
 @interface SidebarViewController ()
 
 @property (nonatomic, strong) NSArray *menuItems;
+@property (nonatomic, strong) NSArray *type;
 @end
 
 @implementation SidebarViewController
@@ -29,30 +30,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _menuItems = @[@"Sunday Bayanaat", @" Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat", @"Nazmain", @"Others"];
+    _menuItems = @[@"",@"Sunday Bayanaat", @"Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat",@"Others"];
+    _type = @[@"",@"sunday",@"bayans",@"morning",@"tusmani",@"ramdhan",@"others"];
     
+    self.sidebarTableView.tableFooterView = [UIView new];
 }
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
 {
     // Set the title of navigation bar by using the menu items
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    
-    if ([segue.identifier isEqualToString:@"show"]) {
-        Bayan *vendor = (Bayan*)segue.destinationViewController;
-        vendor.title = [[self.menuItems objectAtIndex:indexPath.row] capitalizedString];
-    }
-    
-    if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
-        SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
+    if (indexPath.row > 0) {
+        if ([segue.identifier isEqualToString:@"show"]) {
+            Bayan *b = (Bayan*)segue.destinationViewController;
+            b.title = [[self.menuItems objectAtIndex:indexPath.row] capitalizedString];
+            b.type = [self.type objectAtIndex:indexPath.row];
+        }
         
-        swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
+        if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
+            SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
             
-            UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
-            [navController setViewControllers: @[dvc] animated: NO ];
-            [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
-        };
+            swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
+                
+                UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
+                [navController setViewControllers: @[dvc] animated: NO ];
+                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
+            };
+        }
     }
+
 }
 
 - (void)didReceiveMemoryWarning

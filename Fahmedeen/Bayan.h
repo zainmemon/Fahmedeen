@@ -9,23 +9,24 @@
 #import <UIKit/UIKit.h>
 #import "AudioPlayer.h"
 
-@interface Bayan : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface Bayan : UIViewController<UITableViewDelegate,UITableViewDataSource,AVAudioPlayerDelegate>
 
 
-@property (nonatomic, strong) AudioPlayer *audioPlayer;
+@property (nonatomic, strong) AVPlayer *audioPlayer;
 
 @property (weak, nonatomic) IBOutlet UISlider *currentTimeSlider;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UILabel *duration;
 @property (weak, nonatomic) IBOutlet UILabel *timeElapsed;
+@property (weak, nonatomic) IBOutlet UILabel *currentPlaying;
 
-
+@property (weak, nonatomic) NSString *type;
 @property BOOL isPaused;
-@property BOOL scrubbing;
 
 @property NSTimer *timer;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 @property (weak, nonatomic) IBOutlet UITableView *BayanList;
+- (IBAction)sliderChange:(id)sender;
 
 @end

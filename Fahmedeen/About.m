@@ -24,8 +24,7 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     screenWidth = screenRect.size.width;
     screenHeight = screenRect.size.height;
-    
-    
+  
 }
 
 - (void)didReceiveMemoryWarning
