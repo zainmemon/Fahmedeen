@@ -30,8 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _menuItems = @[@"",@"Sunday Bayanaat", @"Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat",@"Others"];
-    _type = @[@"",@"sunday",@"bayans",@"morning",@"tusmani",@"ramdhan",@"others"];
+    _menuItems = @[@"",@"Sunday Bayanaat", @"Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat",@"Tafseer",@"Others"];
+    _type = @[@"",@"sunday",@"bayans",@"morning",@"tusmani",@"ramdhan",@"tafseer",@"others"];
     
     self.sidebarTableView.tableFooterView = [UIView new];
 }

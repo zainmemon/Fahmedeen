@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "AudioPlayer.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,AVAudioSessionDelegate,AVAudioPlayerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) AVPlayer *audioPlayer;
+@property (nonatomic, strong) NSString *currentPlayingItem;
+@property BOOL isPaused;
+@property float duration;
+@property float currentTime;
 
 @end

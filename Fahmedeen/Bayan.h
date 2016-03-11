@@ -11,9 +11,6 @@
 
 @interface Bayan : UIViewController<UITableViewDelegate,UITableViewDataSource,AVAudioPlayerDelegate>
 
-
-@property (nonatomic, strong) AVPlayer *audioPlayer;
-
 @property (weak, nonatomic) IBOutlet UISlider *currentTimeSlider;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UILabel *duration;
@@ -21,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentPlaying;
 
 @property (weak, nonatomic) NSString *type;
-@property BOOL isPaused;
 
 @property NSTimer *timer;
 

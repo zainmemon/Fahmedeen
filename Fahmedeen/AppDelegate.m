@@ -9,13 +9,19 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     
+    self.audioPlayer = [[AVPlayer alloc] init];
+    
+    //[[AVAudioSession sharedInstance] setDelegate: self];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive: YES error: nil];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
     
     [Parse setApplicationId:@"pQIcufZCsTQ9GZfLHqibm0wdrJCYorfHIgBGM8ly"
                   clientKey:@"Z5z9skaKL5KrEETkmN3io4w13kp8sgEITGORAQCN"];
@@ -23,15 +29,43 @@
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
                                                     UIUserNotificationTypeBadge |
                                                     UIUserNotificationTypeSound);
+    
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
-
     
     return YES;
 }
-							
+
+-(void)remoteControlReceivedWithEvent:(UIEvent *)event {
+    switch (event.subtype) {
+        case UIEventSubtypeRemoteControlTogglePlayPause:
+            
+            if([self.audioPlayer rate] == 0)
+            {
+                [self.audioPlayer play];
+            }
+            else
+            {
+                [self.audioPlayer pause];
+            }
+            break;
+        case UIEventSubtypeRemoteControlPlay:
+            [self.audioPlayer play];
+            break;
+        case UIEventSubtypeRemoteControlPause:
+            [self.audioPlayer pause];
+            break;
+        default:
+            break;
+    }
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
