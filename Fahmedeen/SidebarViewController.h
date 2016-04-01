@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SidebarViewController : UITableViewController
+@interface SidebarViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *sidebarTableView;
+@property (strong, nonatomic) IBOutlet UIView *backgroundView;
 @end

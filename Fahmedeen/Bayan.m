@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    
+    self.BayanList.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
     customAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.currentPlaying.text = customAppDelegate.currentPlayingItem;
@@ -63,7 +63,7 @@
     }
     
     AllBayans = [BayanList FilePath:BASEURL BAYAN_PHP_FILE parameterOne:self.type parameterTwo:@""];
-    
+    NSLog(@"%@",AllBayans);
     [self.BayanList reloadData];
 
 }
@@ -142,7 +142,9 @@
         previousButtonProperties.enabled = true;
     }
     
+    //[sender viewWithTag:<#(NSInteger)#>]
     UIButton* tappedButton = sender;
+    
     [tappedButton setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
     tappedButton.enabled = false;
     previousButton = sender;
@@ -209,17 +211,19 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return [AllBayans count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [AllBayans count];
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *bayanName = [[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"];
+    NSArray *myArray = [bayanName componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"("]];
     NSString *CellIdentifier = @"bayanCellIdentifier";
     
     bayanCell *cell;
@@ -229,14 +233,21 @@
         cell = (bayanCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     }
     
-    cell.bayanTitle.text = [[AllBayans objectAtIndex:indexPath.row] objectForKey:@"name"];
+    cell.bayanTitle.text = [myArray objectAtIndex:0];
+    cell.bayanDate.text = [NSString stringWithFormat:@"(%@",[myArray objectAtIndex:1]];
     [cell.bayanPlayButton addTarget:self action:@selector(playSelectedRadio:) forControlEvents:UIControlEventTouchUpInside];
-    cell.bayanPlayButton.tag = indexPath.row;
+    cell.bayanPlayButton.tag = indexPath.section;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+}
+
+- (CGFloat)tableView:(UITableView*)tableView
+heightForHeaderInSection:(NSInteger)section {
+    
+    return 10.0;
 }
 @end

@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "audioplayer_play.png"
+      "filename" : "playIcon.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

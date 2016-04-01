@@ -13,6 +13,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [[UINavigationBar appearance]setBarTintColor:[UIColor colorWithRed:1.0f/255.0f green:151.0f/255.0f blue:219.0f/255.0f alpha:1.0]];
+    [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+         
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    //[[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
     // Override point for customization after application launch.
     
     self.audioPlayer = [[AVPlayer alloc] init];

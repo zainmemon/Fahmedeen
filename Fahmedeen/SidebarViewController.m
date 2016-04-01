@@ -18,20 +18,20 @@
 
 @implementation SidebarViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+//- (id)initWithStyle:(UITableViewStyle)style
+//{
+//    self = [super initWithStyle:style];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _menuItems = @[@"",@"Sunday Bayanaat", @"Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat",@"Tafseer",@"Others"];
-    _type = @[@"",@"sunday",@"bayans",@"morning",@"tusmani",@"ramdhan",@"tafseer",@"others"];
+    _menuItems = @[@"Sunday Bayanaat", @"Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat",@"Tafseer",@"Others"];
+    _type = @[@"sunday",@"bayans",@"morning",@"tusmani",@"ramdhan",@"tafseer",@"others"];
     
     self.sidebarTableView.tableFooterView = [UIView new];
 }
@@ -39,12 +39,12 @@
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
 {
     // Set the title of navigation bar by using the menu items
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    NSIndexPath *indexPath = [self.sidebarTableView indexPathForSelectedRow];
     if (indexPath.row > 0) {
         if ([segue.identifier isEqualToString:@"show"]) {
             Bayan *b = (Bayan*)segue.destinationViewController;
-            b.title = [[self.menuItems objectAtIndex:indexPath.row] capitalizedString];
-            b.type = [self.type objectAtIndex:indexPath.row];
+            b.title = [[self.menuItems objectAtIndex:indexPath.row -1] capitalizedString];
+            b.type = [self.type objectAtIndex:indexPath.row -1];
         }
         
         if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
@@ -78,18 +78,43 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.menuItems count];
+    return [self.menuItems count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = @"listitem";
+    if(indexPath.row == 0)
+    {
+        NSString *CellIdentifier = @"logoCell";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        cell.backgroundColor = [UIColor colorWithRed:110.0f/255.0f green:207.0f/255.0f blue:246.0f/255.0f alpha:1.0];
+        return cell;
+    }
+    else
+    {
+        NSString *CellIdentifier = @"listitem";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        cell.textLabel.text = [self.menuItems objectAtIndex:indexPath.row - 1];
+        
+        return cell;
+    }
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.textLabel.text = [self.menuItems objectAtIndex:indexPath.row];
-    
-    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.row == 0)
+    {
+        return 150;
+    }
+    else
+    {
+        return 50;
+    }
 }
 
 @end

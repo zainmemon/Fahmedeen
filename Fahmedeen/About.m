@@ -24,6 +24,8 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     screenWidth = screenRect.size.width;
     screenHeight = screenRect.size.height;
+    
+    self.aboutContent.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
   
 }
 
