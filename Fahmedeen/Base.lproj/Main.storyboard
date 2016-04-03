@@ -32,7 +32,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sidebar_top" translatesAutoresizingMaskIntoConstraints="NO" id="KXG-qB-rET">
-                                                            <rect key="frame" x="-3" y="3" width="216" height="148"/>
+                                                            <rect key="frame" x="-3" y="3" width="214" height="148"/>
                                                         </imageView>
                                                     </subviews>
                                                 </tableViewCellContentView>
@@ -44,9 +44,6 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="210" height="149"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
-                                                <connections>
-                                                    <segue destination="vXZ-lx-hvc" kind="custom" identifier="show" customClass="SWRevealViewControllerSegue" id="N6y-J9-wbr"/>
-                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
@@ -63,6 +60,7 @@
                     <connections>
                         <outlet property="backgroundView" destination="OxD-UK-xnj" id="SYQ-uh-VFX"/>
                         <outlet property="sidebarTableView" destination="XE2-er-pym" id="X3s-Al-Ek1"/>
+                        <segue destination="vXZ-lx-hvc" kind="custom" identifier="show" customClass="SWRevealViewControllerSegue" id="x4t-aM-CtJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0WZ-Id-5Z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,6 +228,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ENC-Of-tax">
+                                <rect key="frame" x="150" y="336" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="8uK-1u-59V"/>
+                                    <constraint firstAttribute="height" constant="20" id="P8i-az-ANX"/>
+                                </constraints>
+                                <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -240,7 +246,9 @@
                             <constraint firstItem="lgr-gW-hal" firstAttribute="top" secondItem="cFS-jK-QCW" secondAttribute="bottom" id="GTZ-6R-FnH"/>
                             <constraint firstItem="cFl-ud-LWA" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Gn3-I2-seQ"/>
                             <constraint firstItem="mIU-WX-EN4" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="KTf-u7-PrF"/>
+                            <constraint firstItem="ENC-Of-tax" firstAttribute="top" secondItem="cFl-ud-LWA" secondAttribute="bottom" constant="222" id="QYf-XB-KPJ"/>
                             <constraint firstItem="cFl-ud-LWA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="SZu-sf-3q0"/>
+                            <constraint firstItem="ENC-Of-tax" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="itz-bD-J9S"/>
                             <constraint firstItem="cFS-jK-QCW" firstAttribute="top" secondItem="cFl-ud-LWA" secondAttribute="bottom" constant="10" id="m65-YP-JrX"/>
                             <constraint firstItem="mIU-WX-EN4" firstAttribute="top" secondItem="FEJ-B5-ZLD" secondAttribute="bottom" constant="8" id="szX-yc-4xe"/>
                             <constraint firstAttribute="trailing" secondItem="cFl-ud-LWA" secondAttribute="trailing" id="wTU-or-9yj"/>
@@ -256,6 +264,7 @@
                         <outlet property="currentTimeSlider" destination="Zgz-Lz-gTp" id="lKc-hb-yvu"/>
                         <outlet property="duration" destination="f6E-Uw-3ZJ" id="zuG-Xb-QmA"/>
                         <outlet property="playButton" destination="ujk-UA-a43" id="D2k-LR-ZGy"/>
+                        <outlet property="progress" destination="ENC-Of-tax" id="Pik-L4-Xjh"/>
                         <outlet property="sideBarButton" destination="Dr4-MF-Lu0" id="hsG-7l-LgH"/>
                         <outlet property="timeElapsed" destination="L4E-fN-T3L" id="3Zq-fO-oGf"/>
                     </connections>
@@ -466,6 +475,6 @@ We pray to Almighty Allah to accept this effort from our behalf and make it a so
         <image name="sidebar_top" width="853" height="648"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="N6y-J9-wbr"/>
+        <segue reference="x4t-aM-CtJ"/>
     </inferredMetricsTieBreakers>
 </document>

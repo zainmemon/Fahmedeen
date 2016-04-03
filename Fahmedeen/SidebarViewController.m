@@ -18,22 +18,19 @@
 
 @implementation SidebarViewController
 
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-//    self = [super initWithStyle:style];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     _menuItems = @[@"Sunday Bayanaat", @"Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat",@"Tafseer",@"Others"];
     _type = @[@"sunday",@"bayans",@"morning",@"tusmani",@"ramdhan",@"tafseer",@"others"];
     
+    self.sidebarTableView.bounces = false;
     self.sidebarTableView.tableFooterView = [UIView new];
+    
+    [self.sidebarTableView setSeparatorColor:[UIColor colorWithRed:168/255.0
+                                                             green:216/255.0
+                                                              blue:240/255.0
+                                                             alpha:1.0]];
 }
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
@@ -41,9 +38,13 @@
     // Set the title of navigation bar by using the menu items
     NSIndexPath *indexPath = [self.sidebarTableView indexPathForSelectedRow];
     if (indexPath.row > 0) {
+        NSLog(@"index: %ld",(long)indexPath.row);
         if ([segue.identifier isEqualToString:@"show"]) {
             Bayan *b = (Bayan*)segue.destinationViewController;
             b.title = [[self.menuItems objectAtIndex:indexPath.row -1] capitalizedString];
+            
+            NSLog(@"title: %@",[self.menuItems objectAtIndex:indexPath.row -1]);
+            
             b.type = [self.type objectAtIndex:indexPath.row -1];
         }
         
@@ -94,9 +95,17 @@
     }
     else
     {
+        
         NSString *CellIdentifier = @"listitem";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        UIView *customColorView = [[UIView alloc] init];
+        customColorView.backgroundColor = [UIColor colorWithRed:255/255.0
+                                                          green:239/255.0
+                                                           blue:206/255.0
+                                                          alpha:1.0];
+        cell.selectedBackgroundView =  customColorView;
         
         cell.textLabel.text = [self.menuItems objectAtIndex:indexPath.row - 1];
         
@@ -105,8 +114,15 @@
     
     
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"show" sender:self];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
     if(indexPath.row == 0)
     {
         return 150;

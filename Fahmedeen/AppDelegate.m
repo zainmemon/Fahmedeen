@@ -19,8 +19,7 @@
     [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
          
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    
-    //[[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+
     // Override point for customization after application launch.
     
     self.audioPlayer = [[AVPlayer alloc] init];

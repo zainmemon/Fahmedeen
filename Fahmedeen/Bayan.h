@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 @property (weak, nonatomic) IBOutlet UITableView *BayanList;
 - (IBAction)sliderChange:(id)sender;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *progress;
 
 @end

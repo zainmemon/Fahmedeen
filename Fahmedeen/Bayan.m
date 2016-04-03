@@ -28,6 +28,9 @@
 {
     [super viewDidLoad];
     
+    [_progress setHidden:false];
+    //[_progress setBackgroundColor:[UIColor blackColor]];
+    
     self.BayanList.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
     customAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -62,9 +65,29 @@
                                                      repeats:YES];
     }
     
-    AllBayans = [BayanList FilePath:BASEURL BAYAN_PHP_FILE parameterOne:self.type parameterTwo:@""];
-    NSLog(@"%@",AllBayans);
-    [self.BayanList reloadData];
+    dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
+    dispatch_async(myqueue, ^(void) {
+        
+        [_progress startAnimating];
+        AllBayans = [BayanList FilePath:BASEURL BAYAN_PHP_FILE parameterOne:self.type parameterTwo:@""];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Update UI on main queue
+            
+            if(AllBayans.count > 0)
+            {
+                [self.BayanList reloadData];
+            }
+            else
+            {
+                [self showAlertBoxWithtitle:@"Sorry" message:@"There is some problem with your internet connecion. Please try again later"];
+            }
+            
+            [_progress stopAnimating];
+            [_progress setHidden:true];
+        });
+        
+    });
 
 }
 
@@ -249,5 +272,28 @@
 heightForHeaderInSection:(NSInteger)section {
     
     return 10.0;
+}
+
+-(UIAlertController*)showAlertBoxWithtitle:(NSString*)title message:(NSString*)message
+{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:title
+                                  message:message
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"Okay"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                             
+                             
+                         }];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    return alert;
 }
 @end
