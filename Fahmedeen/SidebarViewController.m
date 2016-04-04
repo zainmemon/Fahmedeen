@@ -46,6 +46,7 @@
             NSLog(@"title: %@",[self.menuItems objectAtIndex:indexPath.row -1]);
             
             b.type = [self.type objectAtIndex:indexPath.row -1];
+            NSLog(@"type: %@",[self.type objectAtIndex:indexPath.row -1]);
         }
         
         if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
