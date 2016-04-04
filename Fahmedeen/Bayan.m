@@ -31,8 +31,10 @@
     [_progress setHidden:false];
     //[_progress setBackgroundColor:[UIColor blackColor]];
     
-    self.BayanList.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    self.view.backgroundColor = [UIColor colorWithRed:227.0/255.0 green:227.0/255.0 blue:227.0/255.0 alpha:1.0];
+    self.BayanList.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0];
     
+    self.BayanList.bounces = false;
     customAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.currentPlaying.text = customAppDelegate.currentPlayingItem;
     [self updateTime];
@@ -80,7 +82,7 @@
             }
             else
             {
-                [self showAlertBoxWithtitle:@"Sorry" message:@"There is some problem with your internet connecion. Please try again later"];
+                [self showAlertBoxWithtitle:@"Alert" message:@"There is some problem with your internet connecion. Please try again later"];
             }
             
             [_progress stopAnimating];
@@ -165,10 +167,11 @@
         previousButtonProperties.enabled = true;
     }
     
-    //[sender viewWithTag:<#(NSInteger)#>]
     UIButton* tappedButton = sender;
+    //[[tappedButton viewWithTag:0]setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selected_play"]]];
     
     [tappedButton setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
+    
     tappedButton.enabled = false;
     previousButton = sender;
     NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:tappedButton.tag] objectForKey:@"link"]];
@@ -185,7 +188,7 @@
     AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:urlStream options:nil];
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:avAsset];
     customAppDelegate.audioPlayer = [AVPlayer playerWithPlayerItem:playerItem];
-    //This enables background music playing
+    
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     customAppDelegate.audioPlayer = [AVPlayer playerWithURL:urlStream];
     if(!customAppDelegate.audioPlayer.error)
@@ -266,8 +269,21 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIButton *b = nil;
+    for(UIView *v in cell.subviews) {
+        if([v isKindOfClass:[UIButton class]]) {
+            b = (UIButton*)v;
+            break;
+        }
+    }
+    
+    b.tag = indexPath.row;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 }
 
 - (CGFloat)tableView:(UITableView*)tableView
