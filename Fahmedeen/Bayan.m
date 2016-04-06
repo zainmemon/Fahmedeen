@@ -158,27 +158,6 @@
     }
 }
 
-- (void)playSelectedRadio:(id)sender
-{
-    if(previousButton != nil)
-    {
-        UIButton* previousButtonProperties = previousButton;
-        [previousButtonProperties setBackgroundImage:[UIImage imageNamed:@"play"] forState:normal];
-        previousButtonProperties.enabled = true;
-    }
-    
-    UIButton* tappedButton = sender;
-    //[[tappedButton viewWithTag:0]setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selected_play"]]];
-    
-    [tappedButton setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
-    
-    tappedButton.enabled = false;
-    previousButton = sender;
-    NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:tappedButton.tag] objectForKey:@"link"]];
-    customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:tappedButton.tag] objectForKey:@"name"]];
-    self.currentPlaying.text = customAppDelegate.currentPlayingItem;
-    [self playStream:filePath];
-}
 
 -(void)playStream:(NSString *) audioPath
 {
@@ -250,40 +229,63 @@
 {
     
     NSString *bayanName = [[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"];
-    NSLog(bayanName);
+    
     NSArray *myArray = [bayanName componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"(0"]];
     NSString *CellIdentifier = @"bayanCellIdentifier";
     
-    bayanCell *cell;
+    bayanCell *mycell = (bayanCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if(mycell == nil)
+//    {
+//        mycell = (bayanCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    }
     
-    if(cell == nil)
-    {
-        cell = (bayanCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    }
+    mycell.bayanTitle.text = [myArray objectAtIndex:0];
+    mycell.bayanDate.text = [NSString stringWithFormat:@"(%@",[myArray objectAtIndex:1]];
+    [mycell.bayanPlayButton addTarget:self action:@selector(playSelectedRadio:) forControlEvents:UIControlEventTouchUpInside];
+    mycell.bayanPlayButton.tag = indexPath.section;
     
-    cell.bayanTitle.text = [myArray objectAtIndex:0];
-    cell.bayanDate.text = [NSString stringWithFormat:@"(%@",[myArray objectAtIndex:1]];
-    [cell.bayanPlayButton addTarget:self action:@selector(playSelectedRadio:) forControlEvents:UIControlEventTouchUpInside];
-    cell.bayanPlayButton.tag = indexPath.section;
     
-    return cell;
+    return mycell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIButton *b = nil;
-    for(UIView *v in cell.subviews) {
-        if([v isKindOfClass:[UIButton class]]) {
-            b = (UIButton*)v;
-            break;
-        }
-    }
+- (void)playSelectedRadio:(id)sender
+{
+    UIButton* tappedButton = sender;
     
-    b.tag = indexPath.row;
+    
+//    if(previousButton != nil)
+//    {
+//        UIButton* previousButtonProperties = previousButton;
+//        [previousButtonProperties setBackgroundImage:[UIImage imageNamed:@"play"] forState:normal];
+//        previousButtonProperties.enabled = true;
+//    }
+//    
+//    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.BayanList];
+//    NSIndexPath *indexPath = [self.BayanList indexPathForRowAtPoint:buttonPosition];
+//    
+//    if (indexPath != nil)
+//    {
+//        NSLog(@"%ld",(long)indexPath.section);
+//    }
+//    
+//    
+//    //[[tappedButton viewWithTag:0]setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selected_play"]]];
+//    
+//    //[tappedButton setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
+//    
+//    tappedButton.enabled = false;
+//    previousButton = sender;
+//    NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:tappedButton.tag] objectForKey:@"link"]];
+//    customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:tappedButton.tag] objectForKey:@"name"]];
+//    self.currentPlaying.text = customAppDelegate.currentPlayingItem;
+//    [self playStream:filePath];
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+//    bayanCell *targetCustomCell = (bayanCell *)[tableView cellForRowAtIndexPath:indexPath];
+//    [targetCustomCell.bayanPlayButton setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
 }
 
 - (CGFloat)tableView:(UITableView*)tableView
