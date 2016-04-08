@@ -158,27 +158,6 @@
     }
 }
 
-- (void)playSelectedRadio:(id)sender
-{
-    if(previousButton != nil)
-    {
-        UIButton* previousButtonProperties = previousButton;
-        [previousButtonProperties setBackgroundImage:[UIImage imageNamed:@"play"] forState:normal];
-        previousButtonProperties.enabled = true;
-    }
-    
-    UIButton* tappedButton = sender;
-    //[[tappedButton viewWithTag:0]setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selected_play"]]];
-    
-    [tappedButton setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
-    
-    tappedButton.enabled = false;
-    previousButton = sender;
-    NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:tappedButton.tag] objectForKey:@"link"]];
-    customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:tappedButton.tag] objectForKey:@"name"]];
-    self.currentPlaying.text = customAppDelegate.currentPlayingItem;
-    [self playStream:filePath];
-}
 
 -(void)playStream:(NSString *) audioPath
 {
@@ -269,22 +248,34 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIButton *b = nil;
-    for(UIView *v in cell.subviews) {
-        if([v isKindOfClass:[UIButton class]]) {
-            b = (UIButton*)v;
-            break;
-        }
-    }
-    
-    b.tag = indexPath.row;
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
 }
+
+- (void)playSelectedRadio:(id)sender
+{
+    if(previousButton != nil)
+    {
+        UIButton* previousButtonProperties = previousButton;
+        [previousButtonProperties setBackgroundImage:[UIImage imageNamed:@"play"] forState:normal];
+        previousButtonProperties.enabled = true;
+    }
+    
+    UIButton* tappedButton = sender;
+    //[[tappedButton viewWithTag:0]setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selected_play"]]];
+    
+    [tappedButton setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
+    
+    tappedButton.enabled = false;
+    previousButton = sender;
+    NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:tappedButton.tag] objectForKey:@"link"]];
+    customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:tappedButton.tag] objectForKey:@"name"]];
+    self.currentPlaying.text = customAppDelegate.currentPlayingItem;
+    [self playStream:filePath];
+}
+
 
 - (CGFloat)tableView:(UITableView*)tableView
 heightForHeaderInSection:(NSInteger)section {
