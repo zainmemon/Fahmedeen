@@ -158,17 +158,15 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRu-lR-yUB">
                                                     <rect key="frame" x="11" y="6" width="225" height="23"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="225" id="db6-2V-hDL"/>
                                                         <constraint firstAttribute="height" constant="23" id="j9m-3i-o04"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="15"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEK-Lf-Jgx">
                                                     <rect key="frame" x="11" y="31" width="225" height="23"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="225" id="UiJ-Ai-nOR"/>
                                                         <constraint firstAttribute="height" constant="23" id="v4b-r0-vhL"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="13"/>
@@ -204,6 +202,8 @@
                                                 <constraint firstItem="ZD3-k8-ivU" firstAttribute="top" secondItem="D5r-gk-vEI" secondAttribute="top" id="dyt-iV-ZOM"/>
                                                 <constraint firstItem="WEK-Lf-Jgx" firstAttribute="leading" secondItem="D5r-gk-vEI" secondAttribute="leading" constant="11" id="oxM-P0-m7D"/>
                                                 <constraint firstItem="fRu-lR-yUB" firstAttribute="top" secondItem="D5r-gk-vEI" secondAttribute="top" constant="6" id="pYz-wO-yqx"/>
+                                                <constraint firstItem="ZD3-k8-ivU" firstAttribute="leading" secondItem="WEK-Lf-Jgx" secondAttribute="trailing" constant="10" id="wQ7-ga-Voz"/>
+                                                <constraint firstItem="ZD3-k8-ivU" firstAttribute="leading" secondItem="fRu-lR-yUB" secondAttribute="trailing" constant="10" id="xOM-OF-sFw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -219,7 +219,7 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="jBH-aP-7Ro"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently Playing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIU-WX-EN4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Audio Selected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIU-WX-EN4">
                                 <rect key="frame" x="10" y="28" width="300" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="MXq-LD-x0y"/>
@@ -232,8 +232,8 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ENC-Of-tax">
                                 <rect key="frame" x="150" y="336" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="moh-wZ-o8i"/>
-                                    <constraint firstAttribute="width" constant="20" id="uv6-xv-oEX"/>
+                                    <constraint firstAttribute="width" constant="20" id="DaG-nb-evL"/>
+                                    <constraint firstAttribute="height" constant="20" id="YsI-Wz-OeA"/>
                                 </constraints>
                                 <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </activityIndicatorView>
@@ -242,16 +242,16 @@
                         <constraints>
                             <constraint firstItem="cFl-ud-LWA" firstAttribute="top" secondItem="mIU-WX-EN4" secondAttribute="bottom" constant="8" id="0Cv-24-xjs"/>
                             <constraint firstItem="cFS-jK-QCW" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="0j8-gk-QTy"/>
+                            <constraint firstItem="ENC-Of-tax" firstAttribute="top" secondItem="cFl-ud-LWA" secondAttribute="bottom" constant="222" id="3Kg-ip-Xsj"/>
                             <constraint firstItem="cFS-jK-QCW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="65b-yo-VnT"/>
                             <constraint firstAttribute="trailing" secondItem="cFS-jK-QCW" secondAttribute="trailing" id="FBO-vJ-rC3"/>
                             <constraint firstItem="lgr-gW-hal" firstAttribute="top" secondItem="cFS-jK-QCW" secondAttribute="bottom" id="GTZ-6R-FnH"/>
                             <constraint firstItem="cFl-ud-LWA" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Gn3-I2-seQ"/>
                             <constraint firstItem="mIU-WX-EN4" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="KTf-u7-PrF"/>
                             <constraint firstItem="cFl-ud-LWA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="SZu-sf-3q0"/>
-                            <constraint firstItem="ENC-Of-tax" firstAttribute="top" secondItem="cFS-jK-QCW" secondAttribute="bottom" constant="-232" id="Va2-my-Z9T"/>
-                            <constraint firstItem="ENC-Of-tax" firstAttribute="leading" secondItem="cFS-jK-QCW" secondAttribute="trailing" constant="-170" id="fjp-1a-Qn7"/>
                             <constraint firstItem="cFS-jK-QCW" firstAttribute="top" secondItem="cFl-ud-LWA" secondAttribute="bottom" constant="10" id="m65-YP-JrX"/>
                             <constraint firstItem="mIU-WX-EN4" firstAttribute="top" secondItem="FEJ-B5-ZLD" secondAttribute="bottom" constant="8" id="szX-yc-4xe"/>
+                            <constraint firstItem="ENC-Of-tax" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="tfx-kP-cPe"/>
                             <constraint firstAttribute="trailing" secondItem="cFl-ud-LWA" secondAttribute="trailing" id="wTU-or-9yj"/>
                         </constraints>
                     </view>

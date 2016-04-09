@@ -20,8 +20,9 @@
 @implementation Bayan
 {
     NSArray * AllBayans;
-    id previousButton;
+    unsigned long previousButton;
     AppDelegate *customAppDelegate;
+    NSMutableArray *imageNameArray;
 }
 
 - (void)viewDidLoad
@@ -29,8 +30,9 @@
     [super viewDidLoad];
     
     [_progress setHidden:false];
-    //[_progress setBackgroundColor:[UIColor blackColor]];
     
+    imageNameArray = [[NSMutableArray alloc]init];
+   
     self.view.backgroundColor = [UIColor colorWithRed:227.0/255.0 green:227.0/255.0 blue:227.0/255.0 alpha:1.0];
     self.BayanList.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0];
     
@@ -97,6 +99,9 @@
 {
     [self.timer invalidate];
 
+    [self.progress stopAnimating];
+    [_progress setHidden:true];
+    
     if (!customAppDelegate.isPaused) {
         [self.playButton setBackgroundImage:[UIImage imageNamed:@"pause"]
                                    forState:UIControlStateNormal];
@@ -168,8 +173,28 @@
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:avAsset];
     customAppDelegate.audioPlayer = [AVPlayer playerWithPlayerItem:playerItem];
     
+   // NSLog(@"the player item status is %ld",(long)playerItem.status);
+    
+    NSError *error = nil;
+//    if(playerItem.status == AVPlayerItemStatusFailed)
+//    {
+//        NSLog(@"hello");
+//    }
+    if(playerItem.asset == nil)
+    {
+        
+    }
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     customAppDelegate.audioPlayer = [AVPlayer playerWithURL:urlStream];
+    NSLog(@"the rate is %ld",(long)customAppDelegate.audioPlayer.status);
+    if(customAppDelegate.audioPlayer.rate != 1.0)
+    {
+        NSLog(@"hello");
+    }
+    else
+    {
+        NSLog(@"hello123");
+    }
     if(!customAppDelegate.audioPlayer.error)
     {
         customAppDelegate.duration = CMTimeGetSeconds([[[customAppDelegate.audioPlayer currentItem]asset]duration]);
@@ -181,6 +206,10 @@
         customAppDelegate.isPaused = false;
         
         [self playAudioPressed:self];
+    }
+    else
+    {
+        
     }
 }
 
@@ -233,12 +262,40 @@
     NSArray *myArray = [bayanName componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"(0"]];
     NSString *CellIdentifier = @"bayanCellIdentifier";
     
-    bayanCell *mycell = (bayanCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if(mycell == nil)
-//    {
-//        mycell = (bayanCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//    }
+    [imageNameArray addObject:@"play"];
     
+    bayanCell *mycell;
+    
+    if(mycell == nil)
+    {
+        mycell = (bayanCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    }
+    
+    [mycell setDidTapButtonBlock:^(id sender) {
+        
+        [_progress setHidden:false];
+        [self.progress startAnimating];
+        
+        NSLog(@"revert to: %lu",(unsigned long)previousButton);
+        [imageNameArray removeObjectAtIndex:previousButton];
+        [imageNameArray insertObject:@"play" atIndex:previousButton];
+        [imageNameArray removeObjectAtIndex:indexPath.section];
+        [imageNameArray insertObject:@"selected_play" atIndex:indexPath.section];
+        
+        NSLog(@"time to play is: %lu",indexPath.section);
+        
+        
+        previousButton = indexPath.section;
+        NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
+        customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]];
+        self.currentPlaying.text = customAppDelegate.currentPlayingItem;
+        [self playStream:filePath];
+        
+        [self.BayanList reloadData];
+        
+    }];
+    
+    [mycell.bayanPlayButton setBackgroundImage:[UIImage imageNamed:[imageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
     mycell.bayanTitle.text = [myArray objectAtIndex:0];
     mycell.bayanDate.text = [NSString stringWithFormat:@"(%@",[myArray objectAtIndex:1]];
     [mycell.bayanPlayButton addTarget:self action:@selector(playSelectedRadio:) forControlEvents:UIControlEventTouchUpInside];
@@ -250,9 +307,15 @@
 
 - (void)playSelectedRadio:(id)sender
 {
-    UIButton* tappedButton = sender;
-    
-    
+//    UIButton *button = (UIButton *)sender;
+//    
+//    // Find Point in Superview
+//    CGPoint pointInSuperview = [button.superview convertPoint:button.center toView:self.BayanList];
+//    
+//    // Infer Index Path
+//    NSIndexPath *indexPath = [self.BayanList indexPathForRowAtPoint:pointInSuperview];
+//    
+//    NSLog([NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]]);
 //    if(previousButton != nil)
 //    {
 //        UIButton* previousButtonProperties = previousButton;
@@ -268,10 +331,10 @@
 //        NSLog(@"%ld",(long)indexPath.section);
 //    }
 //    
+    //[[button viewWithTag:0]setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
+    //[[button viewWithTag:indexPath.section]setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selected_play"]]];
 //    
-//    //[[tappedButton viewWithTag:0]setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selected_play"]]];
-//    
-//    //[tappedButton setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
+    //[button setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
 //    
 //    tappedButton.enabled = false;
 //    previousButton = sender;
@@ -284,8 +347,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    bayanCell *targetCustomCell = (bayanCell *)[tableView cellForRowAtIndexPath:indexPath];
-//    [targetCustomCell.bayanPlayButton setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
 }
 
 

@@ -14,4 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *bayanPlayButton;
 @property (strong, nonatomic) IBOutlet UILabel *bayanDate;
 - (IBAction)bayanPlayButtonAction:(id)sender;
+
+- (void)setDidTapButtonBlock:(void (^)(id sender))didTapButtonBlock;
+
 @end
