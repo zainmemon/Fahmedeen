@@ -55,7 +55,7 @@
     
     if(customAppDelegate.currentPlayingItem == nil)
     {
-        self.currentPlaying.text = @"Current Playing";
+        self.currentPlaying.text = @"No Audio Playing";
     }
     
     if (customAppDelegate.isPaused)
@@ -113,6 +113,8 @@
                                                      repeats:YES];
         
         [customAppDelegate.audioPlayer play];
+        
+        NSLog(@"the status is %@",customAppDelegate.audioPlayer.error);
         customAppDelegate.isPaused = TRUE;
         
     }
@@ -172,29 +174,11 @@
     AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:urlStream options:nil];
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:avAsset];
     customAppDelegate.audioPlayer = [AVPlayer playerWithPlayerItem:playerItem];
-    
-   // NSLog(@"the player item status is %ld",(long)playerItem.status);
-    
-    NSError *error = nil;
-//    if(playerItem.status == AVPlayerItemStatusFailed)
-//    {
-//        NSLog(@"hello");
-//    }
-    if(playerItem.asset == nil)
-    {
-        
-    }
+
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     customAppDelegate.audioPlayer = [AVPlayer playerWithURL:urlStream];
     NSLog(@"the rate is %ld",(long)customAppDelegate.audioPlayer.status);
-    if(customAppDelegate.audioPlayer.rate != 1.0)
-    {
-        NSLog(@"hello");
-    }
-    else
-    {
-        NSLog(@"hello123");
-    }
+
     if(!customAppDelegate.audioPlayer.error)
     {
         customAppDelegate.duration = CMTimeGetSeconds([[[customAppDelegate.audioPlayer currentItem]asset]duration]);
@@ -207,10 +191,7 @@
         
         [self playAudioPressed:self];
     }
-    else
-    {
-        
-    }
+
 }
 
 -(void)stopStream
@@ -258,8 +239,8 @@
 {
     
     NSString *bayanName = [[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"];
-    
-    NSArray *myArray = [bayanName componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"(0"]];
+    //[self dateSelectedInPickerView:bayanName];
+    //NSArray *myArray = [bayanName componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"(0"]];
     NSString *CellIdentifier = @"bayanCellIdentifier";
     
     [imageNameArray addObject:@"play"];
@@ -282,9 +263,6 @@
         [imageNameArray removeObjectAtIndex:indexPath.section];
         [imageNameArray insertObject:@"selected_play" atIndex:indexPath.section];
         
-        NSLog(@"time to play is: %lu",indexPath.section);
-        
-        
         previousButton = indexPath.section;
         NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
         customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]];
@@ -296,57 +274,18 @@
     }];
     
     [mycell.bayanPlayButton setBackgroundImage:[UIImage imageNamed:[imageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
-    mycell.bayanTitle.text = [myArray objectAtIndex:0];
-    mycell.bayanDate.text = [NSString stringWithFormat:@"(%@",[myArray objectAtIndex:1]];
-    [mycell.bayanPlayButton addTarget:self action:@selector(playSelectedRadio:) forControlEvents:UIControlEventTouchUpInside];
+    mycell.bayanTitle.text = bayanName;
+    //mycell.bayanDate.text = [NSString stringWithFormat:@"(%@",[myArray objectAtIndex:1]];
+    //[mycell.bayanPlayButton addTarget:self action:@selector(playSelectedRadio:) forControlEvents:UIControlEventTouchUpInside];
     mycell.bayanPlayButton.tag = indexPath.section;
     
     
     return mycell;
 }
 
-- (void)playSelectedRadio:(id)sender
-{
-//    UIButton *button = (UIButton *)sender;
-//    
-//    // Find Point in Superview
-//    CGPoint pointInSuperview = [button.superview convertPoint:button.center toView:self.BayanList];
-//    
-//    // Infer Index Path
-//    NSIndexPath *indexPath = [self.BayanList indexPathForRowAtPoint:pointInSuperview];
-//    
-//    NSLog([NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]]);
-//    if(previousButton != nil)
-//    {
-//        UIButton* previousButtonProperties = previousButton;
-//        [previousButtonProperties setBackgroundImage:[UIImage imageNamed:@"play"] forState:normal];
-//        previousButtonProperties.enabled = true;
-//    }
-//    
-//    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.BayanList];
-//    NSIndexPath *indexPath = [self.BayanList indexPathForRowAtPoint:buttonPosition];
-//    
-//    if (indexPath != nil)
-//    {
-//        NSLog(@"%ld",(long)indexPath.section);
-//    }
-//    
-    //[[button viewWithTag:0]setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
-    //[[button viewWithTag:indexPath.section]setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selected_play"]]];
-//    
-    //[button setBackgroundImage:[UIImage imageNamed:@"selected_play"] forState:normal];
-//    
-//    tappedButton.enabled = false;
-//    previousButton = sender;
-//    NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:tappedButton.tag] objectForKey:@"link"]];
-//    customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:tappedButton.tag] objectForKey:@"name"]];
-//    self.currentPlaying.text = customAppDelegate.currentPlayingItem;
-//    [self playStream:filePath];
-}
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 }
 
 

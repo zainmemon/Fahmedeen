@@ -130,7 +130,7 @@
     }
     else
     {
-        return 50;
+        return 40;
     }
 }
 

@@ -7,20 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		194EABF31C44D47100D9868A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EABF11C44D47100D9868A /* Bolts.framework */; settings = {ASSET_TAGS = (); }; };
-		194EABF41C44D47100D9868A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EABF21C44D47100D9868A /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
+		194EABF31C44D47100D9868A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EABF11C44D47100D9868A /* Bolts.framework */; };
+		194EABF41C44D47100D9868A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EABF21C44D47100D9868A /* Parse.framework */; };
 		194EABF61C44DB5900D9868A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EABF51C44DB5800D9868A /* AudioToolbox.framework */; };
 		194EABF81C44DB6100D9868A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EABF71C44DB6100D9868A /* CFNetwork.framework */; };
 		194EABFA1C44DB7300D9868A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EABF91C44DB7300D9868A /* QuartzCore.framework */; };
 		194EABFC1C44DB7F00D9868A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EABFB1C44DB7F00D9868A /* Security.framework */; };
-		194EABFE1C44DB8500D9868A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EABFD1C44DB8500D9868A /* StoreKit.framework */; };
 		194EAC001C44DB9100D9868A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EABFF1C44DB9100D9868A /* SystemConfiguration.framework */; };
 		194EAC021C44DB9D00D9868A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EAC011C44DB9D00D9868A /* libz.tbd */; };
 		194EAC041C44DBA800D9868A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 194EAC031C44DBA800D9868A /* libsqlite3.tbd */; };
 		1961D1C81A77568800425562 /* About.m in Sources */ = {isa = PBXBuildFile; fileRef = 1961D1C71A77568800425562 /* About.m */; };
 		1961D1CB1A77569D00425562 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 1961D1CA1A77569D00425562 /* Contact.m */; };
 		1961D1CD1A7759FC00425562 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1961D1CC1A7759FC00425562 /* AVFoundation.framework */; };
-		198D77C51C3D2CF300973A6D /* bayanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 198D77C41C3D2CF300973A6D /* bayanCell.m */; settings = {ASSET_TAGS = (); }; };
+		198D77C51C3D2CF300973A6D /* bayanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 198D77C41C3D2CF300973A6D /* bayanCell.m */; };
 		199B87AD1A850B11009E43AC /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 199B87AC1A850B11009E43AC /* WebService.m */; };
 		19E5A4D7197EA902009FE7D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E5A4D6197EA902009FE7D5 /* Foundation.framework */; };
 		19E5A4D9197EA902009FE7D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E5A4D8197EA902009FE7D5 /* CoreGraphics.framework */; };
@@ -59,7 +58,6 @@
 		194EABF71C44DB6100D9868A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		194EABF91C44DB7300D9868A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		194EABFB1C44DB7F00D9868A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		194EABFD1C44DB8500D9868A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		194EABFF1C44DB9100D9868A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		194EAC011C44DB9D00D9868A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		194EAC031C44DBA800D9868A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -109,7 +107,6 @@
 				194EAC041C44DBA800D9868A /* libsqlite3.tbd in Frameworks */,
 				194EAC021C44DB9D00D9868A /* libz.tbd in Frameworks */,
 				194EAC001C44DB9100D9868A /* SystemConfiguration.framework in Frameworks */,
-				194EABFE1C44DB8500D9868A /* StoreKit.framework in Frameworks */,
 				194EABFC1C44DB7F00D9868A /* Security.framework in Frameworks */,
 				194EABFA1C44DB7300D9868A /* QuartzCore.framework in Frameworks */,
 				19E5A4D9197EA902009FE7D5 /* CoreGraphics.framework in Frameworks */,
@@ -162,7 +159,6 @@
 				194EAC031C44DBA800D9868A /* libsqlite3.tbd */,
 				194EAC011C44DB9D00D9868A /* libz.tbd */,
 				194EABFF1C44DB9100D9868A /* SystemConfiguration.framework */,
-				194EABFD1C44DB8500D9868A /* StoreKit.framework */,
 				194EABFB1C44DB7F00D9868A /* Security.framework */,
 				194EABF91C44DB7300D9868A /* QuartzCore.framework */,
 				194EABF71C44DB6100D9868A /* CFNetwork.framework */,
@@ -303,6 +299,11 @@
 				TargetAttributes = {
 					19E5A4D2197EA902009FE7D5 = {
 						DevelopmentTeam = 3ZL3EV2653;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					19E5A4F3197EA902009FE7D5 = {
 						TestTargetID = 19E5A4D2197EA902009FE7D5;
@@ -449,7 +450,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "ecaff134-43bc-4059-b133-0fe8235cd52e";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -483,7 +484,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "ecaff134-43bc-4059-b133-0fe8235cd52e";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -494,7 +495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Avialdo Solutions (3ZL3EV2653)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -505,7 +506,7 @@
 				INFOPLIST_FILE = "Fahmedeen/Fahmedeen-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avialdo.bait-us-salam";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ecaff134-43bc-4059-b133-0fe8235cd52e";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -515,7 +516,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Avialdo Solutions (3ZL3EV2653)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -526,7 +527,7 @@
 				INFOPLIST_FILE = "Fahmedeen/Fahmedeen-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avialdo.bait-us-salam";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ecaff134-43bc-4059-b133-0fe8235cd52e";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
