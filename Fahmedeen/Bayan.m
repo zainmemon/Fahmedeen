@@ -23,12 +23,15 @@
     unsigned long previousButton;
     AppDelegate *customAppDelegate;
     NSMutableArray *imageNameArray;
+    WebService *BayanListWebServiceObject;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.tryAgainProperty.hidden = true;
+    self.internetText.hidden = true;
     [_progress setHidden:false];
     
     imageNameArray = [[NSMutableArray alloc]init];
@@ -44,13 +47,13 @@
     _sideBarButton.target = self.revealViewController;
     _sideBarButton.action = @selector(revealToggle:);
     
-    WebService *BayanList = [[WebService alloc] init];
+    BayanListWebServiceObject = [[WebService alloc] init];
     AllBayans = [[NSMutableArray alloc] init];
     
     if(self.type == nil)
     {
-        self.type = @"tafseer";
-        self.title = @"Tafseer";
+        self.type = @"sunday";
+        self.title = @"Sunday Bayanaat";
     }
     
     if(customAppDelegate.currentPlayingItem == nil)
@@ -69,21 +72,40 @@
                                                      repeats:YES];
     }
     
+    [self callWebService];
+
+}
+
+-(void)callWebService
+{
+    self.tryAgainProperty.hidden = true;
+    self.internetText.hidden = true;
+    
+    [_progress setHidden:false];
+    
     dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
     dispatch_async(myqueue, ^(void) {
         
         [_progress startAnimating];
-        AllBayans = [BayanList FilePath:BASEURL BAYAN_PHP_FILE parameterOne:self.type parameterTwo:@""];
+        AllBayans = [BayanListWebServiceObject FilePath:BASEURL BAYAN_PHP_FILE parameterOne:self.type parameterTwo:@""];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // Update UI on main queue
             
             if(AllBayans.count > 0)
             {
+                [_progress setHidden:true];
+                self.tryAgainProperty.hidden = true;
+                self.internetText.hidden = true;
                 [self.BayanList reloadData];
+                
             }
             else
             {
+                [_progress setHidden:true];
+                self.tryAgainProperty.hidden = false;
+                self.internetText.hidden = false;
+                
                 [self showAlertBoxWithtitle:@"Alert" message:@"There is some problem with your internet connecion. Please try again later"];
             }
             
@@ -92,9 +114,7 @@
         });
         
     });
-
 }
-
 - (IBAction)playAudioPressed:(id)playButton
 {
     [self.timer invalidate];
@@ -237,50 +257,47 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSString *bayanName = [[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"];
-    //[self dateSelectedInPickerView:bayanName];
-    //NSArray *myArray = [bayanName componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"(0"]];
-    NSString *CellIdentifier = @"bayanCellIdentifier";
-    
-    [imageNameArray addObject:@"play"];
-    
     bayanCell *mycell;
+    NSString *CellIdentifier = @"bayanCellIdentifier";
     
     if(mycell == nil)
     {
         mycell = (bayanCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     }
-    
-    [mycell setDidTapButtonBlock:^(id sender) {
+        NSString *bayanName = [[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"];
         
-        [_progress setHidden:false];
-        [self.progress startAnimating];
         
-        NSLog(@"revert to: %lu",(unsigned long)previousButton);
-        [imageNameArray removeObjectAtIndex:previousButton];
-        [imageNameArray insertObject:@"play" atIndex:previousButton];
-        [imageNameArray removeObjectAtIndex:indexPath.section];
-        [imageNameArray insertObject:@"selected_play" atIndex:indexPath.section];
+        [imageNameArray addObject:@"play"];
         
-        previousButton = indexPath.section;
-        NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
-        customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]];
-        self.currentPlaying.text = customAppDelegate.currentPlayingItem;
-        [self playStream:filePath];
+        [mycell setDidTapButtonBlock:^(id sender) {
+            
+            [_progress setHidden:false];
+            [self.progress startAnimating];
+            
+            NSLog(@"revert to: %lu",(unsigned long)previousButton);
+            [imageNameArray removeObjectAtIndex:previousButton];
+            [imageNameArray insertObject:@"play" atIndex:previousButton];
+            [imageNameArray removeObjectAtIndex:indexPath.section];
+            [imageNameArray insertObject:@"selected_play" atIndex:indexPath.section];
+            
+            previousButton = indexPath.section;
+            NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
+            customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]];
+            self.currentPlaying.text = customAppDelegate.currentPlayingItem;
+            [self playStream:filePath];
+            
+            [self.BayanList reloadData];
+            
+        }];
         
-        [self.BayanList reloadData];
+        [mycell.bayanPlayButton setBackgroundImage:[UIImage imageNamed:[imageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
+        mycell.bayanTitle.text = bayanName;
+        //mycell.bayanDate.text = [NSString stringWithFormat:@"(%@",[myArray objectAtIndex:1]];
+        //[mycell.bayanPlayButton addTarget:self action:@selector(playSelectedRadio:) forControlEvents:UIControlEventTouchUpInside];
+        mycell.bayanPlayButton.tag = indexPath.section;
         
-    }];
-    
-    [mycell.bayanPlayButton setBackgroundImage:[UIImage imageNamed:[imageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
-    mycell.bayanTitle.text = bayanName;
-    //mycell.bayanDate.text = [NSString stringWithFormat:@"(%@",[myArray objectAtIndex:1]];
-    //[mycell.bayanPlayButton addTarget:self action:@selector(playSelectedRadio:) forControlEvents:UIControlEventTouchUpInside];
-    mycell.bayanPlayButton.tag = indexPath.section;
-    
-    
-    return mycell;
+        
+        return mycell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -316,5 +333,10 @@ heightForHeaderInSection:(NSInteger)section {
     [self presentViewController:alert animated:YES completion:nil];
     
     return alert;
+}
+- (IBAction)tryAgainButtonAction:(id)sender
+{
+    
+    [self callWebService];
 }
 @end

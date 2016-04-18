@@ -224,6 +224,32 @@
                                 </constraints>
                                 <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="lan-nw-quS">
+                                <rect key="frame" x="102" y="300" width="117" height="28"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="SbN-cF-Knm"/>
+                                    <constraint firstAttribute="width" constant="117" id="izu-Ra-Euf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="16"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Try again">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tryAgainButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3Kk-h3-pGI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Internet connection is not working." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9GW-cY-CUh">
+                                <rect key="frame" x="10" y="266" width="300" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Hyb-TL-2JD"/>
+                                    <constraint firstAttribute="height" constant="36" id="uIN-00-x54"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -231,11 +257,15 @@
                             <constraint firstItem="cFS-jK-QCW" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="0j8-gk-QTy"/>
                             <constraint firstItem="ENC-Of-tax" firstAttribute="top" secondItem="cFl-ud-LWA" secondAttribute="bottom" constant="222" id="3Kg-ip-Xsj"/>
                             <constraint firstItem="cFS-jK-QCW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="65b-yo-VnT"/>
+                            <constraint firstItem="lan-nw-quS" firstAttribute="top" secondItem="9GW-cY-CUh" secondAttribute="bottom" constant="-2" id="7Pe-xL-YcR"/>
+                            <constraint firstItem="lan-nw-quS" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="A98-IK-1GS"/>
                             <constraint firstAttribute="trailing" secondItem="cFS-jK-QCW" secondAttribute="trailing" id="FBO-vJ-rC3"/>
                             <constraint firstItem="lgr-gW-hal" firstAttribute="top" secondItem="cFS-jK-QCW" secondAttribute="bottom" id="GTZ-6R-FnH"/>
                             <constraint firstItem="cFl-ud-LWA" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Gn3-I2-seQ"/>
                             <constraint firstItem="mIU-WX-EN4" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="KTf-u7-PrF"/>
                             <constraint firstItem="cFl-ud-LWA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="SZu-sf-3q0"/>
+                            <constraint firstItem="9GW-cY-CUh" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="bdP-8U-QMH"/>
+                            <constraint firstItem="9GW-cY-CUh" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="gXU-gv-RXG"/>
                             <constraint firstItem="cFS-jK-QCW" firstAttribute="top" secondItem="cFl-ud-LWA" secondAttribute="bottom" constant="10" id="m65-YP-JrX"/>
                             <constraint firstItem="mIU-WX-EN4" firstAttribute="top" secondItem="FEJ-B5-ZLD" secondAttribute="bottom" constant="8" id="szX-yc-4xe"/>
                             <constraint firstItem="ENC-Of-tax" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="tfx-kP-cPe"/>
@@ -251,10 +281,12 @@
                         <outlet property="currentPlaying" destination="mIU-WX-EN4" id="xmw-6i-3Uq"/>
                         <outlet property="currentTimeSlider" destination="Zgz-Lz-gTp" id="lKc-hb-yvu"/>
                         <outlet property="duration" destination="f6E-Uw-3ZJ" id="zuG-Xb-QmA"/>
+                        <outlet property="internetText" destination="9GW-cY-CUh" id="8t9-CK-ils"/>
                         <outlet property="playButton" destination="ujk-UA-a43" id="D2k-LR-ZGy"/>
                         <outlet property="progress" destination="ENC-Of-tax" id="Pik-L4-Xjh"/>
                         <outlet property="sideBarButton" destination="Dr4-MF-Lu0" id="hsG-7l-LgH"/>
                         <outlet property="timeElapsed" destination="L4E-fN-T3L" id="3Zq-fO-oGf"/>
+                        <outlet property="tryAgainProperty" destination="lan-nw-quS" id="csp-wC-lDM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

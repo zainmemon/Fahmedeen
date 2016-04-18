@@ -25,5 +25,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *BayanList;
 - (IBAction)sliderChange:(id)sender;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *progress;
+@property (weak, nonatomic) IBOutlet UILabel *internetText;
+@property (weak, nonatomic) IBOutlet UIButton *tryAgainProperty;
+- (IBAction)tryAgainButtonAction:(id)sender;
 
 @end

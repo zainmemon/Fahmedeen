@@ -298,7 +298,7 @@
 				ORGANIZATIONNAME = "Zainu Corporation";
 				TargetAttributes = {
 					19E5A4D2197EA902009FE7D5 = {
-						DevelopmentTeam = 3ZL3EV2653;
+						DevelopmentTeam = 5AGD336E8Z;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -430,8 +430,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Avialdo Solutions (3ZL3EV2653)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Avialdo Solutions (3ZL3EV2653)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -450,7 +450,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -471,8 +471,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Avialdo Solutions (3ZL3EV2653)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Avialdo Solutions (3ZL3EV2653)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -484,7 +484,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -495,7 +495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -504,9 +504,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fahmedeen/Fahmedeen-Prefix.pch";
 				INFOPLIST_FILE = "Fahmedeen/Fahmedeen-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.avialdo.bait-us-salam";
+				PRODUCT_BUNDLE_IDENTIFIER = com.avialdo.baitussalam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -516,7 +516,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -525,9 +525,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fahmedeen/Fahmedeen-Prefix.pch";
 				INFOPLIST_FILE = "Fahmedeen/Fahmedeen-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.avialdo.bait-us-salam";
+				PRODUCT_BUNDLE_IDENTIFIER = com.avialdo.baitussalam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
