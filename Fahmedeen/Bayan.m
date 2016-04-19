@@ -134,7 +134,6 @@
         
         [customAppDelegate.audioPlayer play];
         
-        NSLog(@"the status is %@",customAppDelegate.audioPlayer.error);
         customAppDelegate.isPaused = TRUE;
         
     }
@@ -197,7 +196,6 @@
 
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     customAppDelegate.audioPlayer = [AVPlayer playerWithURL:urlStream];
-    NSLog(@"the rate is %ld",(long)customAppDelegate.audioPlayer.status);
 
     if(!customAppDelegate.audioPlayer.error)
     {
@@ -271,22 +269,53 @@
         
         [mycell setDidTapButtonBlock:^(id sender) {
             
-            [_progress setHidden:false];
-            [self.progress startAnimating];
+            //[_progress setHidden:false];
+            //[self.progress startAnimating];
             
-            NSLog(@"revert to: %lu",(unsigned long)previousButton);
-            [imageNameArray removeObjectAtIndex:previousButton];
-            [imageNameArray insertObject:@"play" atIndex:previousButton];
-            [imageNameArray removeObjectAtIndex:indexPath.section];
-            [imageNameArray insertObject:@"selected_play" atIndex:indexPath.section];
-            
-            previousButton = indexPath.section;
-            NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
-            customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]];
-            self.currentPlaying.text = customAppDelegate.currentPlayingItem;
-            [self playStream:filePath];
-            
-            [self.BayanList reloadData];
+            if ([imageNameArray[indexPath.section] isEqualToString:@"pause"]) {
+                
+                NSLog(@"1");
+                [self.playButton setBackgroundImage:[UIImage imageNamed:@"play"]
+                                           forState:UIControlStateNormal];
+                
+                [customAppDelegate.audioPlayer pause];
+                customAppDelegate.isPaused = FALSE;
+                imageNameArray[indexPath.section] = @"play";
+                
+                [self.BayanList reloadData];
+            }
+            else
+            {
+                if(![customAppDelegate.currentPlayingItem isEqualToString:[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]])
+                {
+                    NSLog(@"2");
+                    imageNameArray[previousButton] = @"play";
+                    imageNameArray[indexPath.section] = @"pause";
+                    
+                    previousButton = indexPath.section;
+                    NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
+                    customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]];
+                    self.currentPlaying.text = customAppDelegate.currentPlayingItem;
+                    [self playStream:filePath];
+                    
+                    [self.BayanList reloadData];
+                    
+                }
+                else
+                {
+                    NSLog(@"3");
+                    [self.playButton setBackgroundImage:[UIImage imageNamed:@"pause"]
+                                               forState:UIControlStateNormal];
+                    
+                    [customAppDelegate.audioPlayer play];
+                    customAppDelegate.isPaused = true;
+                    imageNameArray[indexPath.section] = @"pause";
+                    
+                    [self.BayanList reloadData];
+
+                }
+
+            }
             
         }];
         
