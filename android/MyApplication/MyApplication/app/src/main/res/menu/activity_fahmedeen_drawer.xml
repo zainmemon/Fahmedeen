@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/sunday_bayanaat"
+            android:title="Sunday Bayanaat" />
+        <item
+            android:id="@+id/bayanaat"
+            android:title="Bayanaat" />
+        <item
+            android:id="@+id/morning_dars"
+            android:title="Morning Dars" />
+        <item
+            android:id="@+id/mufti_taqi"
+            android:title="Mufti Taqi Usmani" />
+        <item
+            android:id="@+id/ramzan_bayanaat"
+            android:title="Ramzan Bayanaat" />
+        <item
+            android:id="@+id/tafseer"
+            android:title="Tafseer" />
+        <item
+            android:id="@+id/others"
+            android:title="Others" />
+
+    </group>
+
+
+    <!--<item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>-->
+
+</menu>
