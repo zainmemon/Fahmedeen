@@ -1,6 +1,7 @@
 package my.fahmedeen.application.android;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.media.AudioManager;
@@ -34,6 +35,15 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import android.os.IBinder;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.view.MenuItem;
+import android.view.View;
+import my.fahmedeen.application.android.MusicService.MusicBinder;
+
 
 
 //import com.google.android.gms.maps.GoogleMap;
@@ -42,6 +52,7 @@ import java.util.concurrent.TimeUnit;
 public class SundayBayanaat extends Fragment {
 
     View rootView;
+    public static String url;
     ListView listview;
     final String TAG = "SundayBayanaat";
     ProgressBar progressBar;
@@ -64,7 +75,8 @@ public class SundayBayanaat extends Fragment {
     ImageButton buttonrw;
     private MusicService musicSrv;
     private Intent playIntent;
-    private boolean musicBound = false;
+    private boolean musicBound=false;
+
 
     public SundayBayanaat() {
 
@@ -142,7 +154,8 @@ public class SundayBayanaat extends Fragment {
 
                     MySingletonClass mySingletonClass = MySingletonClass.getInstance();
                     //Toast.makeText(getContext(), link[position], Toast.LENGTH_LONG).show();
-                    String url = mySingletonClass.getBaseURL() + link[position]; // your URL here
+                   url= mySingletonClass.getBaseURL() + link[position]; // your URL here
+
                     mediaPlayer.reset();
                    // progressBarPlayer.setVisibility(View.VISIBLE);
                     gonePlayer();
@@ -159,7 +172,10 @@ public class SundayBayanaat extends Fragment {
                             visiblePlayer();
                            // progressBarPlayer.setVisibility(View.GONE);
 
+
                             play();
+                            //musicSrv.setUrl(url);
+                            //musicSrv.playSong();
                         }
                     });
 
@@ -168,11 +184,11 @@ public class SundayBayanaat extends Fragment {
 
                     //mediaPlayer.start();
 
-
                     if (myAdapter.selectedNo != -1) {
                         item.get(myAdapter.selectedNo).setSelected(false);
                     }
                     myAdapter.selectedNo = position;
+                    item.get(position).setSelected(true);
                     listview.invalidate();
 
                 } catch (IOException e) {
@@ -206,15 +222,15 @@ public class SundayBayanaat extends Fragment {
         return rootView;
     }
 
-    private ServiceConnection musicConnection = new ServiceConnection() {
+    //connect to the service
+    private ServiceConnection musicConnection = new ServiceConnection(){
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            MusicService.MusicBinder binder = (MusicService.MusicBinder) service;
+            MusicBinder binder = (MusicBinder)service;
             //get service
             musicSrv = binder.getService();
             //pass list
-            // musicSrv.setList(item);
             musicBound = true;
         }
 
@@ -389,6 +405,47 @@ public class SundayBayanaat extends Fragment {
         super.onDetach();
         //mListener = null;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(playIntent==null){
+            playIntent = new Intent(getActivity(), MusicService.class);
+            getActivity().bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
+            getActivity().startService(playIntent);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().stopService(playIntent);
+        musicSrv=null;
+        super.onDestroy();
+    }
+
+    @Override
+    public void onStop() {
+        getActivity().unbindService(musicConnection);
+        super.onStop();
+    }
+
+    /*@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //menu item selected
+        switch (item.getItemId()) {
+
+            case R.id.action_end:
+                getActivity().stopService(playIntent);
+                musicSrv=null;
+                System.exit(0);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+*/
 
 
 }

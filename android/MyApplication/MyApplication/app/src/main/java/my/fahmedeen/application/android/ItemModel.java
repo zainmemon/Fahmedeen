@@ -1,8 +1,5 @@
 package my.fahmedeen.application.android;
 
-/**
- * Created by Wahab on 05/02/16.
- */
 public class ItemModel {
 
     String item;

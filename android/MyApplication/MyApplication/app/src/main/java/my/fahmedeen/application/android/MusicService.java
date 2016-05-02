@@ -1,49 +1,50 @@
 package my.fahmedeen.application.android;
 
 import android.app.Service;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.util.Log;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Shahrukh Sohail on 4/29/2016.
+ * Created by Shahrukh Sohail on 5/2/2016.
  */
 public class MusicService extends Service implements
         MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener,
         MediaPlayer.OnCompletionListener {
 
-    //media player
     private MediaPlayer player;
-    //song list
-    private String[] songs;
-    //current position
-    private int songPosn;
+  String link;
+    private final IBinder musicBind = new MusicBinder();
 
+    @Override
     public void onCreate() {
-        //create the service
-        //create the service
         super.onCreate();
-//initialize position
-        songPosn = 0;
+
 //create player
         player = new MediaPlayer();
         initMusicPlayer();
     }
 
-    public void initMusicPlayer() {
+    public void initMusicPlayer(){
         //set player properties
+
         player.setWakeMode(getApplicationContext(),
                 PowerManager.PARTIAL_WAKE_LOCK);
         player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
     }
 
-    public void setList(String[] theSongs) {
-        songs = theSongs;
+    public void setUrl(String url){
+       link = url;
     }
 
     public class MusicBinder extends Binder {
@@ -53,9 +54,26 @@ public class MusicService extends Service implements
     }
 
     @Override
-    public IBinder onBind(Intent arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    public IBinder onBind(Intent intent) {
+        return musicBind;
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent){
+        player.stop();
+        player.release();
+        return false;
+    }
+
+    public void playSong(){
+        //play a song
+        player.reset();
+        try {
+            player.setDataSource(link);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -70,6 +88,6 @@ public class MusicService extends Service implements
 
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
-
+player.start();
     }
 }

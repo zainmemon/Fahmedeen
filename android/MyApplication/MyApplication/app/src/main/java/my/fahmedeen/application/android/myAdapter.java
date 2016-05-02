@@ -58,7 +58,11 @@ class myAdapter extends BaseAdapter {
         text.setText(data.get(position).getItem());
         if (data.get(position).isSelected) {
 
+            imgButton.setImageResource(R.drawable.pause_icon);
+
         }else{
+
+            imgButton.setImageResource(R.drawable.play_icon);
 
         }
 
