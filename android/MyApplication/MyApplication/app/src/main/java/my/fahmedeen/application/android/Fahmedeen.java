@@ -1,6 +1,7 @@
 package my.fahmedeen.application.android;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 public class Fahmedeen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,8 @@ public class Fahmedeen extends AppCompatActivity
         setContentView(R.layout.activity_fahmedeen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        player = new MediaPlayer();
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +47,7 @@ public class Fahmedeen extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //navigationView.performClick();
 
-        drawer.openDrawer(GravityCompat.START);
+        //drawer.openDrawer(GravityCompat.START);
 
         Fragment fragment = null;
         Bundle bundleParams = new Bundle();
@@ -65,7 +69,16 @@ public class Fahmedeen extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+         /*   if (SundayBayanaat.mediaPlayer.isPlaying()){
+                moveTaskToBack(true);
+            }
+            else {
+                super.onBackPressed();
+            }*/
         }
+
+
+
     }
 
     @Override
@@ -144,6 +157,5 @@ public class Fahmedeen extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 }

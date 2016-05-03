@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -16,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -35,14 +35,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-import android.os.IBinder;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.view.MenuItem;
-import android.view.View;
-import my.fahmedeen.application.android.MusicService.MusicBinder;
 
 
 
@@ -60,7 +52,7 @@ public class SundayBayanaat extends Fragment {
     ArrayList<ItemModel> item;
     String[] link;
     String param;
-    MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
     // TODO: Rename and change types of parameters
     //private String mParam1;
     //private String mParam2;
@@ -73,14 +65,19 @@ public class SundayBayanaat extends Fragment {
     ImageButton buttonPause;
     ImageButton buttonff;
     ImageButton buttonrw;
+    myAdapter ma;
+    //service
     private MusicService musicSrv;
     private Intent playIntent;
+    //binding
     private boolean musicBound=false;
 
 
     public SundayBayanaat() {
 
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -130,38 +127,27 @@ public class SundayBayanaat extends Fragment {
         duration = (TextView) rootView.findViewById(R.id.songDuration);
         seekbar = (SeekBar) rootView.findViewById(R.id.seekBar);
 
+
         mediaPlayer = new MediaPlayer();
+        ma = new myAdapter(getActivity(),item);
         gonePlayer();
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
 
-                //try {
-                    /*Bundle bundle1 = new Bundle();
-                    bundle1.putString("link",link[position]);
-                    bundle1.putString("item",item[position]);
-                    Fragment fragment = null;
-                    //Bundle bundleParams = new Bundle();
-                    fragment = new MediaPlayerPlay();
-                    fragment.setArguments(bundle1);
-                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.frame_container, fragment);
-                    ft.commit();*/
 
                 try {
 
-
                     MySingletonClass mySingletonClass = MySingletonClass.getInstance();
                     //Toast.makeText(getContext(), link[position], Toast.LENGTH_LONG).show();
-                   url= mySingletonClass.getBaseURL() + link[position]; // your URL here
+                   url = mySingletonClass.getBaseURL() + link[position]; // your URL here
 
                     mediaPlayer.reset();
                    // progressBarPlayer.setVisibility(View.VISIBLE);
                     gonePlayer();
                     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     mediaPlayer.setDataSource(url);
-
                     mediaPlayer.prepareAsync();
                     mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                         @Override
@@ -170,50 +156,31 @@ public class SundayBayanaat extends Fragment {
                             seekbar.setMax((int) finalTime);
                             seekbar.setClickable(false);
                             visiblePlayer();
-                           // progressBarPlayer.setVisibility(View.GONE);
+                            // progressBarPlayer.setVisibility(View.GONE);
 
 
                             play();
-                            //musicSrv.setUrl(url);
+                           // musicSrv.setList(url);
                             //musicSrv.playSong();
                         }
                     });
-
-
                     songName.setText(item.get(position).getItem());
-
                     //mediaPlayer.start();
 
-                    if (myAdapter.selectedNo != -1) {
-                        item.get(myAdapter.selectedNo).setSelected(false);
+                    if (ma.selectedNo != -1) {
+                        item.get(ma.selectedNo).setSelected(false);
+
                     }
-                    myAdapter.selectedNo = position;
-                    item.get(position).setSelected(true);
-                    listview.invalidate();
+                    ma.selectedNo = position;
+                   item.get(position).setSelected(true);
+                    ma.notifyDataSetChanged();
+
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                    /*MySingletonClass mySingletonClass = MySingletonClass.getInstance();
-                    Toast.makeText(getContext(), link[position], Toast.LENGTH_LONG).show();
-                    String url = mySingletonClass.getBaseURL() + link[position]; // your URL here
-                    mediaPlayer = new MediaPlayer();
-                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                    mediaPlayer.setDataSource(url);
-
-                    mediaPlayer.prepareAsync(); // might take long! (for buffering, etc)
-                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                        @Override
-                        public void onPrepared(MediaPlayer mp) {
-                            mp.start();
-                        }
-                    });
-                    //mediaPlayer.start();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
             }
         });
         progressBar.setVisibility(View.VISIBLE);
@@ -222,7 +189,25 @@ public class SundayBayanaat extends Fragment {
         return rootView;
     }
 
-    //connect to the service
+    private ServiceConnection musicConnection = new ServiceConnection(){
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            MusicService.MusicBinder binder = (MusicService.MusicBinder)service;
+            //get service
+            musicSrv = binder.getService();
+            //pass list
+            Log.e("log","service start");
+            musicBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            musicBound = false;
+        }
+    };
+
+    /*//connect to the service
     private ServiceConnection musicConnection = new ServiceConnection(){
 
         @Override
@@ -239,7 +224,7 @@ public class SundayBayanaat extends Fragment {
             musicBound = false;
         }
     };
-
+*/
     public void responseHandle() {
 
         final MySingletonClass mySingletonClass = MySingletonClass.getInstance();
@@ -418,34 +403,15 @@ public class SundayBayanaat extends Fragment {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         getActivity().stopService(playIntent);
         musicSrv=null;
+        if (musicConnection != null) {
+            getActivity().unbindService(musicConnection);
+        }
+
         super.onDestroy();
     }
 
-    @Override
-    public void onStop() {
-        getActivity().unbindService(musicConnection);
-        super.onStop();
-    }
-
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //menu item selected
-        switch (item.getItemId()) {
-
-            case R.id.action_end:
-                getActivity().stopService(playIntent);
-                musicSrv=null;
-                System.exit(0);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-
-    }
-
-*/
 
 
 }

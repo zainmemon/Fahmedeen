@@ -1,5 +1,7 @@
 package my.fahmedeen.application.android;
 
+import java.util.ArrayList;
+
 import android.app.Service;
 import android.content.ContentUris;
 import android.content.Intent;
@@ -11,83 +13,104 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-/**
- * Created by Shahrukh Sohail on 5/2/2016.
+/*
+ * This is demo code to accompany the Mobiletuts+ series:
+ * Android SDK: Creating a Music Player
+ * 
+ * Sue Smith - February 2014
  */
-public class MusicService extends Service implements
-        MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener,
-        MediaPlayer.OnCompletionListener {
 
-    private MediaPlayer player;
-  String link;
-    private final IBinder musicBind = new MusicBinder();
+public class MusicService extends Service implements 
+MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener,
+MediaPlayer.OnCompletionListener {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+	//media player
+	private MediaPlayer player;
+	//song list
+	//current position
+	private int songPosn;
+	String url;
+	//binder
+	private final IBinder musicBind = new MusicBinder();
 
-//create player
-        player = new MediaPlayer();
-        initMusicPlayer();
-    }
+	public void onCreate(){
+		//create the service
+		super.onCreate();
+		//initialize position
+		//create player
+		player = new MediaPlayer();
+		//initialize
+		initMusicPlayer();
+	}
 
-    public void initMusicPlayer(){
-        //set player properties
+	public void initMusicPlayer(){
+		//set player properties
+		player.setWakeMode(getApplicationContext(), 
+				PowerManager.PARTIAL_WAKE_LOCK);
+		player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+		//set listeners
+		player.setOnPreparedListener(this);
+		player.setOnCompletionListener(this);
+		player.setOnErrorListener(this);
+	}
 
-        player.setWakeMode(getApplicationContext(),
-                PowerManager.PARTIAL_WAKE_LOCK);
-        player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+	//pass song list
+	public void setList(String theSongs){
+		url=theSongs;
+	}
 
-    }
+	//binder
+	public class MusicBinder extends Binder {
+		MusicService getService() { 
+			return MusicService.this;
+		}
+	}
 
-    public void setUrl(String url){
-       link = url;
-    }
+	//activity will bind to service
+	@Override
+	public IBinder onBind(Intent intent) {
+		return musicBind;
+	}
 
-    public class MusicBinder extends Binder {
-        MusicService getService() {
-            return MusicService.this;
-        }
-    }
+	//release resources when unbind
+	@Override
+	public boolean onUnbind(Intent intent){
+		player.stop();
+		player.release();
+		return false;
+	}
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return musicBind;
-    }
+	//play a song
+	public void playSong(){
+		//play
+		player.reset();
+		//set the data source
+		try{ 
+			player.setDataSource(url);
+		}
+		catch(Exception e){
+			Log.e("MUSIC SERVICE", "Error setting data source", e);
+		}
+		player.prepareAsync(); 
+	}
 
-    @Override
-    public boolean onUnbind(Intent intent){
-        player.stop();
-        player.release();
-        return false;
-    }
 
-    public void playSong(){
-        //play a song
-        player.reset();
-        try {
-            player.setDataSource(link);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-    }
+	@Override
+	public void onCompletion(MediaPlayer mp) {
+		// TODO Auto-generated method stub
+	}
 
-    @Override
-    public void onCompletion(MediaPlayer mediaPlayer) {
+	@Override
+	public boolean onError(MediaPlayer mp, int what, int extra) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    }
+	@Override
+	public void onPrepared(MediaPlayer mp) {
+		//start playback
+		mp.start();
+	}
 
-    @Override
-    public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
-        return false;
-    }
-
-    @Override
-    public void onPrepared(MediaPlayer mediaPlayer) {
-player.start();
-    }
 }
