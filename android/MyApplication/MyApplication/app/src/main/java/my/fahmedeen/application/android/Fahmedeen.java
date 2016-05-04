@@ -69,12 +69,6 @@ public class Fahmedeen extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-         /*   if (SundayBayanaat.mediaPlayer.isPlaying()){
-                moveTaskToBack(true);
-            }
-            else {
-                super.onBackPressed();
-            }*/
         }
 
 
