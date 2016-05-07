@@ -18,9 +18,8 @@ public class myAdapter extends ArrayAdapter<ItemModel> {
 
     Context context;
     ArrayList<ItemModel> data;
-    int pos;
     static int selectedNo = -1;
-    private  LayoutInflater inflater = null;
+    private LayoutInflater inflater = null;
 
     public myAdapter(Context context, ArrayList<ItemModel> data) {
         // TODO Auto-generated constructor stub
@@ -53,21 +52,27 @@ public class myAdapter extends ArrayAdapter<ItemModel> {
         TextView text = (TextView) vi.findViewById(R.id.text);
         ImageView imgButton = (ImageView) vi.findViewById(R.id.imageButton);
         text.setText(data.get(position).getItem());
-        pos = position;
 
         if (data.get(position).isSelected) {
             imgButton.setImageResource(R.drawable.pause_icon);
-        }else{
+        } else {
             imgButton.setImageResource(R.drawable.play_icon);
         }
 
         return vi;
     }
 
-    public void setSelectedNo(boolean b,int pos1){
+    public void setSelectedNo(int pos) {
+        if(selectedNo==pos && data.get(pos).isSelected()){
+            data.get(pos).setSelected(false);
+        }else {
 
-        data.get(pos).setSelected(b);
-        selectedNo = pos1;
+            if (selectedNo != -1) {
+                data.get(selectedNo).setSelected(false);
+            }
+            data.get(pos).setSelected(true);
+        }
+        selectedNo = pos;
 
     }
 

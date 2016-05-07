@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:background="@drawable/sidebar_top"
-        />
+        android:adjustViewBounds="true" />
 
 
 </LinearLayout>

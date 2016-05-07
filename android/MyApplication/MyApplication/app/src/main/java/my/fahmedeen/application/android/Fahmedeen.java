@@ -1,8 +1,12 @@
 package my.fahmedeen.application.android;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -17,7 +21,54 @@ import android.view.MenuItem;
 public class Fahmedeen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    MediaPlayer player;
+    public MusicService musicSrv;
+    public Intent playIntent;
+    public boolean musicBound = false;
+    //activity and playback pause flags
+
+
+
+    //connect to the service
+    private ServiceConnection musicConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            MusicService.MusicBinder binder = (MusicService.MusicBinder) service;
+            //get service
+            musicSrv = binder.getService();
+            //pass list
+           // musicSrv.setList(null);
+            musicBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            musicBound = false;
+        }
+    };
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (playIntent == null) {
+            playIntent = new Intent(this, MusicService.class);
+            bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
+            startService(playIntent);
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        if (playIntent != null) {
+            stopService(playIntent);
+        }
+        musicSrv = null;
+        super.onDestroy();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +77,9 @@ public class Fahmedeen extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        player = new MediaPlayer();
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-*/
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

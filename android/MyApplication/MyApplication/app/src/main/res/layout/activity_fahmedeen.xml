@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="#FFFFFF"
     tools:openDrawer="start">
 
     <!--<include layout="@layout/content_main" />-->
@@ -13,6 +14,7 @@
     <include
         layout="@layout/app_bar_fahmedeen"
         android:layout_width="match_parent"
+        android:background="#FFFFFF"
         android:layout_height="match_parent" />
 
 
@@ -22,9 +24,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="#FFFFFF"
         app:headerLayout="@layout/nav_header_fahmedeen"
+        app:itemBackground="@drawable/state_list"
         app:menu="@menu/activity_fahmedeen_drawer" />
-
 
 
 </android.support.v4.widget.DrawerLayout>

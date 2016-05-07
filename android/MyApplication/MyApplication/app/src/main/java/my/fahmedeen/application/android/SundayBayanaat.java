@@ -1,5 +1,8 @@
 package my.fahmedeen.application.android;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -37,10 +40,6 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
-
-//import com.google.android.gms.maps.GoogleMap;
-//import com.google.android.gms.maps.MapFragment;
-
 public class SundayBayanaat extends Fragment {
 
     View rootView;
@@ -50,12 +49,7 @@ public class SundayBayanaat extends Fragment {
     ProgressBar progressBar;
     ProgressBar progressBarPlayer;
     ArrayList<ItemModel> item;
-    String[] link;
     String param;
-    public static MediaPlayer mediaPlayer;
-    // TODO: Rename and change types of parameters
-    //private String mParam1;
-    //private String mParam2;
     public TextView songName, duration;
     private double timeElapsed = 0, finalTime = 0;
     private int forwardTime = 2000, backwardTime = 2000;
@@ -66,17 +60,8 @@ public class SundayBayanaat extends Fragment {
     ImageButton buttonff;
     ImageButton buttonrw;
     myAdapter ma;
-    //service
-    private MusicService musicSrv;
+
     private Intent playIntent;
-    //binding
-    private boolean musicBound=false;
-
-
-    public SundayBayanaat() {
-
-    }
-
 
 
     @Override
@@ -128,59 +113,67 @@ public class SundayBayanaat extends Fragment {
         seekbar = (SeekBar) rootView.findViewById(R.id.seekBar);
 
 
-        mediaPlayer = new MediaPlayer();
-        ma = new myAdapter(getActivity(),item);
+
+
         gonePlayer();
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
 
+                if (myAdapter.selectedNo == position && ((Fahmedeen)getActivity()).musicSrv.player.isPlaying()) {
 
-
-                try {
-
-                    MySingletonClass mySingletonClass = MySingletonClass.getInstance();
-                    //Toast.makeText(getContext(), link[position], Toast.LENGTH_LONG).show();
-                   url = mySingletonClass.getBaseURL() + link[position]; // your URL here
-
-                    mediaPlayer.reset();
-                   // progressBarPlayer.setVisibility(View.VISIBLE);
-                    gonePlayer();
-                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                    mediaPlayer.setDataSource(url);
-                    mediaPlayer.prepareAsync();
-                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                        @Override
-                        public void onPrepared(MediaPlayer mp) {
-                            finalTime = mediaPlayer.getDuration();
-                            seekbar.setMax((int) finalTime);
-                            seekbar.setClickable(false);
-                            visiblePlayer();
-                            // progressBarPlayer.setVisibility(View.GONE);
-
-
-                            play();
-                           // musicSrv.setList(url);
-                            //musicSrv.playSong();
-                        }
-                    });
-                    songName.setText(item.get(position).getItem());
-                    //mediaPlayer.start();
-
-                    if (ma.selectedNo != -1) {
-                        item.get(ma.selectedNo).setSelected(false);
-
+                    if (((Fahmedeen)getActivity()).musicSrv.player.isPlaying()) {
+                        ((Fahmedeen)getActivity()).musicSrv.player.pause();
                     }
-                    ma.selectedNo = position;
-                   item.get(position).setSelected(true);
+                    ma.setSelectedNo(position);
                     ma.notifyDataSetChanged();
+                } else {
 
 
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+
+                        gonePlayer();
+                        ((Fahmedeen)getActivity()).musicSrv.setSong(position);
+                        ((Fahmedeen)getActivity()).musicSrv.playSong();
+                        ((Fahmedeen)getActivity()).musicSrv.player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                            @Override
+                            public void onPrepared(MediaPlayer mp) {
+                                mp.start();
+                                finalTime = mp.getDuration();
+                                seekbar.setMax((int) finalTime);
+                                seekbar.setClickable(false);
+                                visiblePlayer();
+                                play();
+                                Intent notIntent = new Intent(SundayBayanaat.this.getActivity(), Fahmedeen.class);
+                                notIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                                PendingIntent pendInt = PendingIntent.getActivity(SundayBayanaat.this.getActivity(), 0,
+                                        notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                                Notification.Builder builder = new Notification.Builder(SundayBayanaat.this.getActivity());
+
+                                builder.setContentIntent(pendInt)
+                                        .setSmallIcon(R.drawable.play)
+                                        .setAutoCancel(true)
+                                        .setTicker(item.get(position).getItem())
+                                        .setOngoing(true)
+                                        .setContentTitle("Fahmedeen - Playing")
+                                        .setContentText(item.get(position).getItem());
+                                Notification not = builder.build();
+                                not.flags = Notification.FLAG_AUTO_CANCEL;
+
+                                NotificationManager notificationManager =
+                                        (NotificationManager) getActivity().getSystemService(getActivity().NOTIFICATION_SERVICE);
+
+                                notificationManager.notify(101, not);
+
+                            }
+                        });
+                        songName.setText(item.get(position).getItem());
+                        //mediaPlayer.start();
+                        ma.setSelectedNo(position);
+                        ma.notifyDataSetChanged();
+
                 }
-
             }
         });
         progressBar.setVisibility(View.VISIBLE);
@@ -189,42 +182,7 @@ public class SundayBayanaat extends Fragment {
         return rootView;
     }
 
-    private ServiceConnection musicConnection = new ServiceConnection(){
 
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            MusicService.MusicBinder binder = (MusicService.MusicBinder)service;
-            //get service
-            musicSrv = binder.getService();
-            //pass list
-            Log.e("log","service start");
-            musicBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            musicBound = false;
-        }
-    };
-
-    /*//connect to the service
-    private ServiceConnection musicConnection = new ServiceConnection(){
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            MusicBinder binder = (MusicBinder)service;
-            //get service
-            musicSrv = binder.getService();
-            //pass list
-            musicBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            musicBound = false;
-        }
-    };
-*/
     public void responseHandle() {
 
         final MySingletonClass mySingletonClass = MySingletonClass.getInstance();
@@ -243,14 +201,15 @@ public class SundayBayanaat extends Fragment {
                     JSONArray jsonArray = new JSONArray(decoded);
                     JSONObject jsonObject = new JSONObject();
                     item = new ArrayList<ItemModel>(jsonArray.length());
-                    link = new String[jsonArray.length()];
+
                     for (int j = 0; j < jsonArray.length(); j++) {
                         jsonObject = jsonArray.getJSONObject(j);
-                        item.add(new ItemModel(jsonObject.getString("name")));
-                        link[j] = jsonObject.getString("link");
-                    }
-                    listview.setAdapter(new myAdapter(getActivity(), item));
+                        item.add(new ItemModel(jsonObject.getString("name"), jsonObject.getString("link")));
 
+                    }
+                    ma = new myAdapter(getActivity(), item);
+                    listview.setAdapter(ma);
+                    ((Fahmedeen)getActivity()).musicSrv.setList(item);
                     Log.d(TAG, jsonArray.toString());
                     progressBar.setVisibility(View.INVISIBLE);
 
@@ -304,8 +263,7 @@ public class SundayBayanaat extends Fragment {
     public void play() {
         buttonPause.setVisibility(View.VISIBLE);
         buttonPlay.setVisibility(View.GONE);
-        mediaPlayer.start();
-        timeElapsed = mediaPlayer.getCurrentPosition();
+        timeElapsed = ((Fahmedeen)getActivity()).musicSrv.player.getCurrentPosition();
         seekbar.setProgress((int) timeElapsed);
         durationHandler.postDelayed(updateSeekBarTime, 100);
     }
@@ -314,7 +272,7 @@ public class SundayBayanaat extends Fragment {
     private Runnable updateSeekBarTime = new Runnable() {
         public void run() {
             //get current position
-            timeElapsed = mediaPlayer.getCurrentPosition();
+            timeElapsed = ((Fahmedeen)getActivity()).musicSrv.player.getCurrentPosition();
             //set seekbar progress
             seekbar.setProgress((int) timeElapsed);
             //set time remaing
@@ -330,7 +288,7 @@ public class SundayBayanaat extends Fragment {
     public void pause() {
         buttonPause.setVisibility(View.GONE);
         buttonPlay.setVisibility(View.VISIBLE);
-        mediaPlayer.pause();
+      //  ((Fahmedeen)getActivity()).musicSrv.player.pause();
     }
 
     public void visiblePlayer() {
@@ -367,7 +325,7 @@ public class SundayBayanaat extends Fragment {
             timeElapsed = timeElapsed + forwardTime;
 
             //seek to the exact second of the track
-            mediaPlayer.seekTo((int) timeElapsed);
+            ((Fahmedeen)getActivity()).musicSrv.player.seekTo((int) timeElapsed);
         }
     }
 
@@ -376,41 +334,20 @@ public class SundayBayanaat extends Fragment {
         //check if we can go back at backwardTime seconds after song starts
         if ((timeElapsed - backwardTime) > 0) {
             timeElapsed = timeElapsed - backwardTime;
-
             //seek to the exact second of the track
-            mediaPlayer.seekTo((int) timeElapsed);
+            ((Fahmedeen)getActivity()).musicSrv.player.seekTo((int) timeElapsed);
         }
     }
 
 
     @Override
     public void onDetach() {
-        mediaPlayer.release();
+     //   ((Fahmedeen)getActivity()).musicSrv.player.release();
         durationHandler.removeCallbacks(updateSeekBarTime);
         super.onDetach();
         //mListener = null;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(playIntent==null){
-            playIntent = new Intent(getActivity(), MusicService.class);
-            getActivity().bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
-            getActivity().startService(playIntent);
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        getActivity().stopService(playIntent);
-        musicSrv=null;
-        if (musicConnection != null) {
-            getActivity().unbindService(musicConnection);
-        }
-
-        super.onDestroy();
-    }
 
 
 

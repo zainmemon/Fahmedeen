@@ -4,9 +4,19 @@ public class ItemModel {
 
     String item;
     boolean isSelected = false;
+    String url;
 
-    public ItemModel(String item) {
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public ItemModel(String item, String url) {
         this.item = item;
+        this.url=url;
     }
 
     public String getItem() {
