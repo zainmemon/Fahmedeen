@@ -10,10 +10,9 @@
 
 @interface WebService : NSObject
 
--(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo parameterThree:(NSString*)parameterThree parameterFour:(NSString*)parameterFour;
--(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo;
--(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo parameterThree:(NSString*)parameterThree;
--(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne;
--(NSArray*)FilePath:(NSString*)filepath;
+-(NSMutableArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo parameterThree:(NSString*)parameterThree parameterFour:(NSString*)parameterFour;
+
+-(NSMutableArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne;
+
 -(NSString *)convertingArrayIntoJsonString: (NSMutableArray *) arrayOne;
 @end

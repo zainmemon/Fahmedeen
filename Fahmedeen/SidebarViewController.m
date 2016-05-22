@@ -21,8 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _menuItems = @[@"Sunday Bayanaat", @"Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat",@"Tafseer",@"Others"];
-    _type = @[@"sunday",@"bayans",@"morning",@"tusmani",@"ramdhan",@"tafseer",@"others"];
+    _menuItems = @[@"Favourites",@"Sunday Bayanaat", @"Bayanaat", @"Morning Dars", @"Mufti Taqi Usmani",@"Ramzan Bayanaat",@"Tafseer",@"Others"];
+    _type = @[@"",@"sunday",@"bayans",@"morning",@"tusmani",@"ramdhan",@"tafseer",@"others"];
     
     self.sidebarTableView.bounces = false;
     self.sidebarTableView.tableFooterView = [UIView new];

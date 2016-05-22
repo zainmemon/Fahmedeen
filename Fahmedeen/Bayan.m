@@ -19,10 +19,13 @@
 
 @implementation Bayan
 {
-    NSArray * AllBayans;
+    BOOL timeForFavourites;
+    NSMutableArray * AllBayans;
     unsigned long previousButton;
     AppDelegate *customAppDelegate;
     NSMutableArray *imageNameArray;
+    NSMutableArray *favouritesImageNameArray;
+    NSMutableArray *MarkUnMarkTitleArray;
     WebService *BayanListWebServiceObject;
 }
 
@@ -35,6 +38,8 @@
     [_progress setHidden:false];
     
     imageNameArray = [[NSMutableArray alloc]init];
+    favouritesImageNameArray = [[NSMutableArray alloc]init];
+    MarkUnMarkTitleArray = [[NSMutableArray alloc]init];
    
     self.view.backgroundColor = [UIColor colorWithRed:227.0/255.0 green:227.0/255.0 blue:227.0/255.0 alpha:1.0];
     self.BayanList.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0];
@@ -72,7 +77,18 @@
                                                      repeats:YES];
     }
     
-    [self callWebService];
+    if([self.type isEqualToString:@""])
+    {
+        //AllBayans = [[NSUserDefaults standardUserDefaults]objectForKey:@"favouritesArray"];
+        AllBayans = customAppDelegate.favouritesList;
+        [_progress setHidden:true];
+        timeForFavourites = true;
+    }
+    else
+    {
+        [self callWebService];
+        timeForFavourites = false;
+    }
 
 }
 
@@ -87,7 +103,7 @@
     dispatch_async(myqueue, ^(void) {
         
         [_progress startAnimating];
-        AllBayans = [BayanListWebServiceObject FilePath:BASEURL BAYAN_PHP_FILE parameterOne:self.type parameterTwo:@""];
+        AllBayans = [BayanListWebServiceObject FilePath:BASEURL BAYAN_PHP_FILE parameterOne:self.type];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // Update UI on main queue
@@ -223,13 +239,7 @@
     
     float value = [slider value];
     
-//    NSInteger durationSeconds = CMTimeGetSeconds([[[customAppDelegate.audioPlayer currentItem]asset]duration]);
-//    float result = durationSeconds * value;
-    
     CMTime seekTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(customAppDelegate.audioPlayer.currentTime) + value, customAppDelegate.audioPlayer.currentTime.timescale);
-    //CMTime seekTime = CMTimeMakeWithSeconds(value, 1);
-   // float currentTime = CMTimeGetSeconds([customAppDelegate.audioPlayer currentTime]);
-    //NSLog(@"the seek time is %f",seekTime);
     
     [self updateTime];
     [customAppDelegate.audioPlayer seekToTime:seekTime];
@@ -262,71 +272,134 @@
     {
         mycell = (bayanCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     }
-        NSString *bayanName = [[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"];
+    
+    if(timeForFavourites)
+    {
+        [favouritesImageNameArray addObject:@"star-filled"];
+        [MarkUnMarkTitleArray addObject:@"UnMark From Favourites"];
+    }
+    else
+    {
+        [favouritesImageNameArray addObject:@"star"];
+        [MarkUnMarkTitleArray addObject:@"Mark As Favourite"];
+        for(int i = 0;i<customAppDelegate.favouritesList.count; i++)
+        {
+            if([[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"] isEqualToString:[[customAppDelegate.favouritesList objectAtIndex:i] objectForKey:@"name"]])
+               {
+                   [favouritesImageNameArray removeLastObject];
+                   [favouritesImageNameArray addObject:@"star-filled"];
+                   
+                   [MarkUnMarkTitleArray removeLastObject];
+                   [MarkUnMarkTitleArray addObject:@"UnMark From Favourites"];
+                   break;
+               }
+        }
+    }
+    
+    
+    
+    
+    NSString *bayanName = [[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"];
+    
+    [imageNameArray addObject:@"play"];
+    
+    [mycell setDidTapButtonBlock:^(id sender) {
         
-        
-        [imageNameArray addObject:@"play"];
-        
-        [mycell setDidTapButtonBlock:^(id sender) {
+        if ([imageNameArray[indexPath.section] isEqualToString:@"pause"]) {
             
-            //[_progress setHidden:false];
-            //[self.progress startAnimating];
+            NSLog(@"1");
+            [self.playButton setBackgroundImage:[UIImage imageNamed:@"play"]
+                                       forState:UIControlStateNormal];
             
-            if ([imageNameArray[indexPath.section] isEqualToString:@"pause"]) {
+            [customAppDelegate.audioPlayer pause];
+            customAppDelegate.isPaused = FALSE;
+            imageNameArray[indexPath.section] = @"selected_play";
+            
+            [self.BayanList reloadData];
+        }
+        else
+        {
+            if(![customAppDelegate.currentPlayingItem isEqualToString:[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]])
+            {
+                NSLog(@"2");
+                imageNameArray[previousButton] = @"play";
+                imageNameArray[indexPath.section] = @"pause";
                 
-                NSLog(@"1");
-                [self.playButton setBackgroundImage:[UIImage imageNamed:@"play"]
-                                           forState:UIControlStateNormal];
-                
-                [customAppDelegate.audioPlayer pause];
-                customAppDelegate.isPaused = FALSE;
-                imageNameArray[indexPath.section] = @"play";
+                previousButton = indexPath.section;
+                NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
+                customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]];
+                self.currentPlaying.text = customAppDelegate.currentPlayingItem;
+                [self playStream:filePath];
                 
                 [self.BayanList reloadData];
+                
             }
             else
             {
-                if(![customAppDelegate.currentPlayingItem isEqualToString:[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]])
-                {
-                    NSLog(@"2");
-                    imageNameArray[previousButton] = @"play";
-                    imageNameArray[indexPath.section] = @"pause";
-                    
-                    previousButton = indexPath.section;
-                    NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
-                    customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]];
-                    self.currentPlaying.text = customAppDelegate.currentPlayingItem;
-                    [self playStream:filePath];
-                    
-                    [self.BayanList reloadData];
-                    
-                }
-                else
-                {
-                    NSLog(@"3");
-                    [self.playButton setBackgroundImage:[UIImage imageNamed:@"pause"]
-                                               forState:UIControlStateNormal];
-                    
-                    [customAppDelegate.audioPlayer play];
-                    customAppDelegate.isPaused = true;
-                    imageNameArray[indexPath.section] = @"pause";
-                    
-                    [self.BayanList reloadData];
-
-                }
-
+                NSLog(@"3");
+                [self.playButton setBackgroundImage:[UIImage imageNamed:@"pause"]
+                                           forState:UIControlStateNormal];
+                
+                [customAppDelegate.audioPlayer play];
+                customAppDelegate.isPaused = true;
+                imageNameArray[indexPath.section] = @"pause";
+                
+                [self.BayanList reloadData];
+                
             }
             
-        }];
+        }
         
-        [mycell.bayanPlayButton setBackgroundImage:[UIImage imageNamed:[imageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
-        mycell.bayanTitle.text = bayanName;
-        //mycell.bayanDate.text = [NSString stringWithFormat:@"(%@",[myArray objectAtIndex:1]];
-        //[mycell.bayanPlayButton addTarget:self action:@selector(playSelectedRadio:) forControlEvents:UIControlEventTouchUpInside];
-        mycell.bayanPlayButton.tag = indexPath.section;
-        
-        
-        return mycell;
+    }];
+    
+    [mycell setDidTapMarkButtonBlock:^(id sender)
+     {
+         if([favouritesImageNameArray[indexPath.section] isEqualToString:@"star-filled"])
+         {
+             [customAppDelegate.favouritesList removeObject:[AllBayans objectAtIndex:indexPath.section]];
+             
+             if(timeForFavourites)
+             {
+                 [favouritesImageNameArray removeObjectAtIndex:indexPath.section];
+                 [MarkUnMarkTitleArray removeObjectAtIndex:indexPath.section];
+             }
+             else
+             {
+                 MarkUnMarkTitleArray[indexPath.section] = @"Mark As Favourite";
+                 favouritesImageNameArray[indexPath.section] = @"star";
+             }
+             
+         }
+         else
+         {
+             [customAppDelegate.favouritesList addObject:[AllBayans objectAtIndex:indexPath.section]];
+             
+             if(timeForFavourites)
+             {
+                 [favouritesImageNameArray removeObjectAtIndex:indexPath.section];
+                 [MarkUnMarkTitleArray removeObjectAtIndex:indexPath.section];
+             }
+             else
+             {
+                 MarkUnMarkTitleArray[indexPath.section] = @"UnMark From Favourites";
+                 favouritesImageNameArray[indexPath.section] = @"star-filled";
+             }
+         }
+         
+         [[NSUserDefaults standardUserDefaults]setObject:customAppDelegate.favouritesList forKey:@"favouritesArray"];
+         [[NSUserDefaults standardUserDefaults] synchronize];
+         [self.BayanList reloadData];
+         
+     }];
+    
+    mycell.markUnMarkTitle.text = [MarkUnMarkTitleArray objectAtIndex:indexPath.section];
+    [mycell.markAsFavouriteButton setBackgroundImage:[UIImage imageNamed:[favouritesImageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
+    [mycell.bayanPlayButton setBackgroundImage:[UIImage imageNamed:[imageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
+    mycell.bayanTitle.text = bayanName;
+    mycell.bayanPlayButton.tag = indexPath.section;
+    
+    
+    return mycell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

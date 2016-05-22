@@ -18,5 +18,6 @@
 @property BOOL isPaused;
 @property float duration;
 @property float currentTime;
+@property NSMutableArray *favouritesList;
 
 @end

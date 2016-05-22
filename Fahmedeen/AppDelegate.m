@@ -13,6 +13,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.favouritesList = [[NSMutableArray alloc]init];
+    
+    if([[NSUserDefaults standardUserDefaults]objectForKey:@"favouritesArray"] == nil)
+    {
+        [[NSUserDefaults standardUserDefaults]setObject:_favouritesList forKey:@"favouritesArray"];
+    }
+    else
+    {
+        _favouritesList = [[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:@"favouritesArray"]];
+    }
+    
     
     [[UINavigationBar appearance]setBarTintColor:[UIColor colorWithRed:1.0f/255.0f green:151.0f/255.0f blue:219.0f/255.0f alpha:1.0]];
     [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];

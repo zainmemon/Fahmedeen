@@ -10,7 +10,7 @@
 
 @implementation WebService
 
--(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo parameterThree:(NSString*)parameterThree parameterFour:(NSString*)parameterFour
+-(NSMutableArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo parameterThree:(NSString*)parameterThree parameterFour:(NSString*)parameterFour
 {
     
     NSString *myRequestString = [filepath stringByAppendingString:[NSString stringWithFormat:@"?type=%@",parameterOne]];
@@ -38,7 +38,7 @@
     // Log Response
     NSString *response = [[NSString alloc] initWithBytes:[returnData bytes] length:[returnData length] encoding:NSUTF8StringEncoding];
     
-    NSArray *jsonArray;
+    NSMutableArray *jsonArray;
     
     if (returnData != nil)
     {
@@ -54,29 +54,29 @@
     return jsonArray;
 }
 
--(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne
+-(NSMutableArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne
 {
     
-    NSArray *responseArray = [self FilePath:filepath parameterOne:parameterOne parameterTwo:nil parameterThree:nil parameterFour:nil];
+    NSMutableArray *responseArray = [self FilePath:filepath parameterOne:parameterOne parameterTwo:nil parameterThree:nil parameterFour:nil];
     return responseArray;
 }
 
--(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo
-{
-    NSArray * responseArray = [self FilePath:filepath parameterOne:parameterOne parameterTwo:parameterTwo parameterThree:nil parameterFour:nil];
-    return responseArray;
-}
-
--(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo parameterThree:(NSString*)parameterThree
-{
-    NSArray * responseArray = [self FilePath:filepath parameterOne:parameterOne parameterTwo:parameterTwo parameterThree:parameterThree parameterFour:nil];
-    return responseArray;
-}
--(NSArray*)FilePath:(NSString*)filepath
-{
-    NSArray *responseArray = [self FilePath:filepath parameterOne:nil parameterTwo:nil parameterThree:nil];
-    return responseArray;
-}
+//-(NSMutableArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo
+//{
+//    NSMutableArray * responseArray = [self FilePath:filepath parameterOne:parameterOne parameterTwo:parameterTwo parameterThree:nil parameterFour:nil];
+//    return responseArray;
+//}
+//
+//-(NSMutableArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo parameterThree:(NSString*)parameterThree
+//{
+//    NSMutableArray * responseArray = [self FilePath:filepath parameterOne:parameterOne parameterTwo:parameterTwo parameterThree:parameterThree parameterFour:nil];
+//    return responseArray;
+//}
+//-(NSMutableArray*)FilePath:(NSString*)filepath
+//{
+//    NSMutableArray *responseArray = [self FilePath:filepath parameterOne:nil parameterTwo:nil parameterThree:nil];
+//    return responseArray;
+//}
 
 -(NSString *)convertingArrayIntoJsonString: (NSMutableArray *) arrayOne{
     NSError *error = nil;
