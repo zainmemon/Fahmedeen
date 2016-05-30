@@ -24,6 +24,7 @@
         _favouritesList = [[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:@"favouritesArray"]];
     }
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     [[UINavigationBar appearance]setBarTintColor:[UIColor colorWithRed:1.0f/255.0f green:151.0f/255.0f blue:219.0f/255.0f alpha:1.0]];
     [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];

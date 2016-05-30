@@ -37,6 +37,7 @@
 		19E5A502197EA902009FE7D5 /* FahmedeenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A501197EA902009FE7D5 /* FahmedeenTests.m */; };
 		19E5A50D197EA944009FE7D5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A50B197EA944009FE7D5 /* SWRevealViewController.m */; };
 		19E5A511197EA96D009FE7D5 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E5A510197EA96D009FE7D5 /* SidebarViewController.m */; };
+		19F307DE1CFC2F2F000F8F80 /* bayanSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F307DD1CFC2F2F000F8F80 /* bayanSingleton.m */; };
 		B770477D1A7922400089911F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B770477C1A7922400089911F /* MapKit.framework */; };
 		B77761351A77C569008C2C00 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B77761341A77C569008C2C00 /* AudioPlayer.m */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,8 @@
 		19E5A50C197EA944009FE7D5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = Fahmedeen/SWRevealViewController.h; sourceTree = "<group>"; };
 		19E5A50F197EA96D009FE7D5 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		19E5A510197EA96D009FE7D5 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
+		19F307DC1CFC2F2F000F8F80 /* bayanSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bayanSingleton.h; sourceTree = "<group>"; };
+		19F307DD1CFC2F2F000F8F80 /* bayanSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bayanSingleton.m; sourceTree = "<group>"; };
 		B770477C1A7922400089911F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B77761331A77C569008C2C00 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
 		B77761341A77C569008C2C00 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
@@ -195,6 +198,8 @@
 				1961D1C71A77568800425562 /* About.m */,
 				1961D1C91A77569D00425562 /* Contact.h */,
 				1961D1CA1A77569D00425562 /* Contact.m */,
+				19F307DC1CFC2F2F000F8F80 /* bayanSingleton.h */,
+				19F307DD1CFC2F2F000F8F80 /* bayanSingleton.m */,
 				19E5A4EE197EA902009FE7D5 /* Images.xcassets */,
 				19E5A50E197EA952009FE7D5 /* Library */,
 				19E5A4DD197EA902009FE7D5 /* Supporting Files */,
@@ -359,6 +364,7 @@
 				19E5A511197EA96D009FE7D5 /* SidebarViewController.m in Sources */,
 				19E5A4ED197EA902009FE7D5 /* Bayan.m in Sources */,
 				19E5A4E7197EA902009FE7D5 /* AppDelegate.m in Sources */,
+				19F307DE1CFC2F2F000F8F80 /* bayanSingleton.m in Sources */,
 				B77761351A77C569008C2C00 /* AudioPlayer.m in Sources */,
 				198D77C51C3D2CF300973A6D /* bayanCell.m in Sources */,
 				1961D1C81A77568800425562 /* About.m in Sources */,
@@ -430,8 +436,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -450,7 +456,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
+				PROVISIONING_PROFILE = "e966883f-5d8c-443f-aa0a-de0d9e4154f4";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -471,8 +477,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -484,7 +490,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
+				PROVISIONING_PROFILE = "e966883f-5d8c-443f-aa0a-de0d9e4154f4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -495,7 +501,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -506,7 +512,7 @@
 				INFOPLIST_FILE = "Fahmedeen/Fahmedeen-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.avialdo.baitussalam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
+				PROVISIONING_PROFILE = "e966883f-5d8c-443f-aa0a-de0d9e4154f4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -516,7 +522,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -527,7 +533,7 @@
 				INFOPLIST_FILE = "Fahmedeen/Fahmedeen-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.avialdo.baitussalam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
+				PROVISIONING_PROFILE = "e966883f-5d8c-443f-aa0a-de0d9e4154f4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

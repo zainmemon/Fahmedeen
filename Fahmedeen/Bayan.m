@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "bayanCell.h"
 #import "AppDelegate.h"
+#import "bayanSingleton.h"
 
 @interface Bayan ()
 
@@ -27,12 +28,15 @@
     NSMutableArray *favouritesImageNameArray;
     NSMutableArray *MarkUnMarkTitleArray;
     WebService *BayanListWebServiceObject;
+    BOOL timeToPutInSingleton;
 }
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
     
+    timeToPutInSingleton = false;
     self.tryAgainProperty.hidden = true;
     self.internetText.hidden = true;
     [_progress setHidden:false];
@@ -86,7 +90,20 @@
     }
     else
     {
-        [self callWebService];
+        AllBayans = [[bayanSingleton sharedManager]filterArray:self.type];
+        
+        if(AllBayans.count > 0)
+        {
+            timeToPutInSingleton = false;
+            [_progress setHidden:true];
+            [self.BayanList reloadData];
+        }
+        else
+        {
+            timeToPutInSingleton = true;
+            [self callWebService];
+        }
+        
         timeForFavourites = false;
     }
 
@@ -113,6 +130,12 @@
                 [_progress setHidden:true];
                 self.tryAgainProperty.hidden = true;
                 self.internetText.hidden = true;
+                
+                for(int i = 0; i<AllBayans.count; i++)
+                {
+                    [[bayanSingleton sharedManager]initWithName:[[AllBayans objectAtIndex:i] objectForKey:@"name"] link:[[AllBayans objectAtIndex:i] objectForKey:@"link"] category:self.type];
+                }
+                
                 [self.BayanList reloadData];
                 
             }
@@ -142,6 +165,7 @@
         [self.playButton setBackgroundImage:[UIImage imageNamed:@"pause"]
                                    forState:UIControlStateNormal];
         
+        
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                       target:self
                                                     selector:@selector(updateTime)
@@ -161,6 +185,8 @@
         [customAppDelegate.audioPlayer pause];
         customAppDelegate.isPaused = FALSE;
     }
+    
+    [self.BayanList reloadData];
 }
 
 - (void)updateTime {
@@ -295,9 +321,6 @@
                }
         }
     }
-    
-    
-    
     
     NSString *bayanName = [[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"];
     
