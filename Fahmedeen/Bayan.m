@@ -176,6 +176,12 @@
         
         customAppDelegate.isPaused = TRUE;
         
+        if([imageNameArray[previousButton] isEqualToString:@"selected_play"])
+        {
+            imageNameArray[previousButton] = @"pause";
+            [self.BayanList reloadData];
+        }
+        
     }
     else
     {
@@ -184,9 +190,13 @@
         
         [customAppDelegate.audioPlayer pause];
         customAppDelegate.isPaused = FALSE;
+        
+        if([imageNameArray[previousButton] isEqualToString:@"pause"])
+        {
+            imageNameArray[previousButton] = @"selected_play";
+            [self.BayanList reloadData];
+        }
     }
-    
-    [self.BayanList reloadData];
 }
 
 - (void)updateTime {
