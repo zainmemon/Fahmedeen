@@ -436,8 +436,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -456,11 +456,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-<<<<<<< Updated upstream
-				PROVISIONING_PROFILE = "e966883f-5d8c-443f-aa0a-de0d9e4154f4";
-=======
-				PROVISIONING_PROFILE = "97308d28-16e5-41df-ac8f-75a9b7b75cb6";
->>>>>>> Stashed changes
+				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -481,8 +477,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -494,11 +490,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-<<<<<<< Updated upstream
-				PROVISIONING_PROFILE = "e966883f-5d8c-443f-aa0a-de0d9e4154f4";
-=======
-				PROVISIONING_PROFILE = "97308d28-16e5-41df-ac8f-75a9b7b75cb6";
->>>>>>> Stashed changes
+				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -509,12 +501,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-<<<<<<< Updated upstream
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
-=======
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
->>>>>>> Stashed changes
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -525,11 +512,7 @@
 				INFOPLIST_FILE = "Fahmedeen/Fahmedeen-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.avialdo.baitussalam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< Updated upstream
-				PROVISIONING_PROFILE = "e966883f-5d8c-443f-aa0a-de0d9e4154f4";
-=======
-				PROVISIONING_PROFILE = "";
->>>>>>> Stashed changes
+				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -539,12 +522,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-<<<<<<< Updated upstream
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uzair Zaveri (EPR8JCKMKG)";
-=======
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
->>>>>>> Stashed changes
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uzair Zaveri (5AGD336E8Z)";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -555,11 +533,7 @@
 				INFOPLIST_FILE = "Fahmedeen/Fahmedeen-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.avialdo.baitussalam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< Updated upstream
-				PROVISIONING_PROFILE = "e966883f-5d8c-443f-aa0a-de0d9e4154f4";
-=======
-				PROVISIONING_PROFILE = "";
->>>>>>> Stashed changes
+				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
