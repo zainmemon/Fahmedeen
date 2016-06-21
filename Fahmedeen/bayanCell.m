@@ -12,6 +12,7 @@
 
 @property (copy, nonatomic) void (^didTapButtonBlock)(id sender);
 @property (copy, nonatomic) void (^didTapMarkButtonBlock)(id sender);
+@property (copy, nonatomic) void (^didTapShareButtonBlock)(id sender);
 
 @end
 
@@ -27,6 +28,7 @@
     
     [self.bayanPlayButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.markAsFavouriteButton addTarget:self action:@selector(didTapMarkButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.shareButton addTarget:self action:@selector(didTapShareButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didTapButton:(id)sender {
@@ -41,6 +43,14 @@
     }
 }
 
+- (void)didTapShareButton:(id)sender {
+    if (self.didTapShareButtonBlock) {
+        self.didTapShareButtonBlock(sender);
+    }
+}
+
 - (IBAction)markAsFavouriteAction:(id)sender {
+}
+- (IBAction)shareButtonAction:(id)sender {
 }
 @end

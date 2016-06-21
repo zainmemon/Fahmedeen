@@ -144,17 +144,25 @@
                                     <constraint firstAttribute="height" constant="45" id="tZk-3T-N6d"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cFS-jK-QCW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cFS-jK-QCW">
                                 <rect key="frame" x="0.0" y="124" width="320" height="444"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bayanCellIdentifier" rowHeight="80" id="PA5-Cj-wRh" customClass="bayanCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bayanCellIdentifier" rowHeight="100" id="PA5-Cj-wRh" customClass="bayanCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PA5-Cj-wRh" id="D5r-gk-vEI">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tyt-NA-Inh">
+                                                    <rect key="frame" x="15" y="62" width="165" height="30"/>
+                                                    <color key="backgroundColor" red="0.43137254899999999" green="0.81176470590000005" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="13"/>
+                                                    <state key="normal" title="Mark As Favourite">
+                                                        <color key="titleColor" red="0.031372549020000001" green="0.41960784309999999" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRu-lR-yUB">
                                                     <rect key="frame" x="11" y="2" width="225" height="53"/>
                                                     <constraints>
@@ -190,53 +198,59 @@
                                                         <constraint firstAttribute="width" constant="1" id="wSY-00-9VL"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Of8-73-jNb">
-                                                    <rect key="frame" x="17" y="59" width="18" height="17"/>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmO-jZ-CP0">
+                                                    <rect key="frame" x="211" y="66" width="23" height="23"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="17" id="PsR-jG-4Bi"/>
-                                                        <constraint firstAttribute="width" constant="18" id="ahf-B1-959"/>
+                                                        <constraint firstAttribute="height" constant="23" id="X0d-HE-OMd"/>
+                                                        <constraint firstAttribute="width" constant="23" id="p5a-gj-x9m"/>
                                                     </constraints>
-                                                    <state key="normal" image="star"/>
+                                                    <state key="normal" image="selected_play">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
-                                                        <action selector="markAsFavouriteAction:" destination="PA5-Cj-wRh" eventType="touchUpInside" id="b6S-jN-HVK"/>
+                                                        <action selector="shareButtonAction:" destination="PA5-Cj-wRh" eventType="touchUpInside" id="gre-Zq-4Hx"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mark As Favourite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaL-K0-v3Q">
-                                                    <rect key="frame" x="44" y="57" width="146" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQi-Lw-BQD">
+                                                    <rect key="frame" x="239" y="68" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="42" id="ELO-yP-ivc"/>
+                                                        <constraint firstAttribute="height" constant="21" id="JGE-O8-4sb"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="13"/>
                                                     <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VdI-vw-S6Y">
+                                                    <rect key="frame" x="193" y="62" width="108" height="30"/>
+                                                    <color key="backgroundColor" red="0.43137254899999999" green="0.81176470590000005" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="15"/>
+                                                    <state key="normal" title="Share">
+                                                        <color key="titleColor" red="0.031372549020000001" green="0.41960784309999999" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="aaL-K0-v3Q" firstAttribute="top" secondItem="nju-qB-eBE" secondAttribute="bottom" constant="1" id="7hF-Os-cIX"/>
-                                                <constraint firstAttribute="bottom" secondItem="nju-qB-eBE" secondAttribute="bottom" constant="23" id="9EW-aK-xPO"/>
                                                 <constraint firstItem="zsO-Ay-Ee0" firstAttribute="leading" secondItem="ZD3-k8-ivU" secondAttribute="trailing" constant="17" id="Bbx-QC-EK1"/>
                                                 <constraint firstAttribute="trailing" secondItem="zsO-Ay-Ee0" secondAttribute="trailing" constant="17" id="CTV-QV-DRl"/>
-                                                <constraint firstItem="Of8-73-jNb" firstAttribute="leading" secondItem="D5r-gk-vEI" secondAttribute="leading" constant="17" id="EQA-fd-fn2"/>
                                                 <constraint firstAttribute="trailing" secondItem="nju-qB-eBE" secondAttribute="trailing" id="Exg-f1-x7e"/>
                                                 <constraint firstItem="fRu-lR-yUB" firstAttribute="leading" secondItem="D5r-gk-vEI" secondAttribute="leading" constant="11" id="FRr-Uk-NXy"/>
-                                                <constraint firstItem="nju-qB-eBE" firstAttribute="top" secondItem="ZD3-k8-ivU" secondAttribute="bottom" id="FdE-vN-UEd"/>
+                                                <constraint firstAttribute="bottom" secondItem="fmO-jZ-CP0" secondAttribute="bottom" constant="8" id="ObW-t5-mYR"/>
+                                                <constraint firstAttribute="bottom" secondItem="mQi-Lw-BQD" secondAttribute="bottom" constant="10" id="a30-MF-Sf0"/>
                                                 <constraint firstItem="zsO-Ay-Ee0" firstAttribute="top" secondItem="D5r-gk-vEI" secondAttribute="top" constant="6" id="bUW-D7-DGZ"/>
                                                 <constraint firstItem="ZD3-k8-ivU" firstAttribute="top" secondItem="D5r-gk-vEI" secondAttribute="top" id="dyt-iV-ZOM"/>
-                                                <constraint firstAttribute="bottom" secondItem="Of8-73-jNb" secondAttribute="bottom" constant="3" id="fcI-iw-PHu"/>
+                                                <constraint firstItem="mQi-Lw-BQD" firstAttribute="leading" secondItem="fmO-jZ-CP0" secondAttribute="trailing" constant="5" id="izy-Uu-kQO"/>
+                                                <constraint firstItem="nju-qB-eBE" firstAttribute="top" secondItem="zsO-Ay-Ee0" secondAttribute="bottom" constant="6" id="pOA-Mb-fCp"/>
                                                 <constraint firstItem="fRu-lR-yUB" firstAttribute="top" secondItem="D5r-gk-vEI" secondAttribute="top" constant="2" id="pYz-wO-yqx"/>
-                                                <constraint firstItem="aaL-K0-v3Q" firstAttribute="leading" secondItem="Of8-73-jNb" secondAttribute="trailing" constant="9" id="ph1-K3-mI5"/>
-                                                <constraint firstItem="Of8-73-jNb" firstAttribute="top" secondItem="nju-qB-eBE" secondAttribute="bottom" constant="3" id="uGK-PY-9WZ"/>
                                                 <constraint firstItem="ZD3-k8-ivU" firstAttribute="leading" secondItem="fRu-lR-yUB" secondAttribute="trailing" constant="10" id="xOM-OF-sFw"/>
                                                 <constraint firstItem="nju-qB-eBE" firstAttribute="leading" secondItem="D5r-gk-vEI" secondAttribute="leading" id="xnw-u5-AUc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="aaL-K0-v3Q" secondAttribute="trailing" constant="130" id="Bps-dF-KRh"/>
-                                            <constraint firstAttribute="bottom" secondItem="aaL-K0-v3Q" secondAttribute="bottom" constant="2" id="gzz-0T-kpa"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="bayanPlayButton" destination="zsO-Ay-Ee0" id="png-By-58v"/>
                                             <outlet property="bayanTitle" destination="fRu-lR-yUB" id="Fm9-L1-fQU"/>
-                                            <outlet property="markAsFavouriteButton" destination="Of8-73-jNb" id="yNY-9o-407"/>
-                                            <outlet property="markUnMarkTitle" destination="aaL-K0-v3Q" id="Afp-iI-JcI"/>
+                                            <outlet property="shareButton" destination="fmO-jZ-CP0" id="R7q-sG-zVZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -531,8 +545,8 @@ We pray to Almighty Allah to accept this effort from our behalf and make it a so
         <image name="home" width="34" height="32"/>
         <image name="panel" width="29" height="29"/>
         <image name="play" width="158" height="155"/>
+        <image name="selected_play" width="66" height="65"/>
         <image name="sidebar_top" width="853" height="648"/>
-        <image name="star" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="x4t-aM-CtJ"/>

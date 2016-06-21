@@ -510,6 +510,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fahmedeen/Fahmedeen-Prefix.pch";
 				INFOPLIST_FILE = "Fahmedeen/Fahmedeen-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.avialdo.baitussalam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";
@@ -531,6 +532,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fahmedeen/Fahmedeen-Prefix.pch";
 				INFOPLIST_FILE = "Fahmedeen/Fahmedeen-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.avialdo.baitussalam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7652f153-fdfb-44c3-89b7-ae28a6ed4b21";

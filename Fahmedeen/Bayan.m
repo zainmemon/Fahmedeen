@@ -425,6 +425,20 @@
          
      }];
     
+    
+    [mycell setDidTapShareButtonBlock:^(id sender)
+     {
+         NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
+         NSString * message = [NSString stringWithFormat:@"Click on the following link to listen %@\n%@",bayanName,filePath];
+         NSLog(@"the message is: %@",message);
+         NSArray * shareItems = @[message];
+         
+         UIActivityViewController * avc = [[UIActivityViewController alloc] initWithActivityItems:shareItems applicationActivities:nil];
+         
+         [self presentViewController:avc animated:YES completion:nil];
+         
+     }];
+     
     mycell.markUnMarkTitle.text = [MarkUnMarkTitleArray objectAtIndex:indexPath.section];
     [mycell.markAsFavouriteButton setBackgroundImage:[UIImage imageNamed:[favouritesImageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
     [mycell.bayanPlayButton setBackgroundImage:[UIImage imageNamed:[imageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
