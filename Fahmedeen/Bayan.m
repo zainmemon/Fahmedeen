@@ -359,7 +359,7 @@
                 imageNameArray[indexPath.section] = @"pause";
                 
                 previousButton = indexPath.section;
-                NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
+                NSString *filePath = [NSString stringWithFormat:@"http://baitussalam.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
                 customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]];
                 self.currentPlaying.text = customAppDelegate.currentPlayingItem;
                 [self playStream:filePath];
@@ -387,7 +387,7 @@
     
     [mycell setDidTapMarkButtonBlock:^(id sender)
      {
-         if([favouritesImageNameArray[indexPath.section] isEqualToString:@"star-filled"])
+         if([MarkUnMarkTitleArray[indexPath.section] isEqualToString:@"UnMark From Favourites"])
          {
              [customAppDelegate.favouritesList removeObject:[AllBayans objectAtIndex:indexPath.section]];
              
@@ -428,7 +428,7 @@
     
     [mycell setDidTapShareButtonBlock:^(id sender)
      {
-         NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
+         NSString *filePath = [NSString stringWithFormat:@"https://baitussalam.org/bs/live"];
          NSString * message = [NSString stringWithFormat:@"Click on the following link to listen %@\n%@",bayanName,filePath];
          NSLog(@"the message is: %@",message);
          NSArray * shareItems = @[message];
@@ -438,9 +438,8 @@
          [self presentViewController:avc animated:YES completion:nil];
          
      }];
-     
-    mycell.markUnMarkTitle.text = [MarkUnMarkTitleArray objectAtIndex:indexPath.section];
-    [mycell.markAsFavouriteButton setBackgroundImage:[UIImage imageNamed:[favouritesImageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
+    
+    [[mycell markAsFavouriteButton] setTitle:[MarkUnMarkTitleArray objectAtIndex:indexPath.section] forState:UIControlStateNormal];
     [mycell.bayanPlayButton setBackgroundImage:[UIImage imageNamed:[imageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
     mycell.bayanTitle.text = bayanName;
     mycell.bayanPlayButton.tag = indexPath.section;

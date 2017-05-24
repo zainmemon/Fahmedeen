@@ -30,8 +30,6 @@
     coordinates.latitude = 24.828066;
     coordinates.longitude = 67.054882;
     
-    NSLog(@"the latitude is: %f",coordinates.latitude);
-    NSLog(@"the longitude is: %f",coordinates.longitude);
     
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     point.coordinate = CLLocationCoordinate2DMake(coordinates.latitude, coordinates.longitude);

@@ -8,7 +8,7 @@
 
 #ifndef Fahmedeen_Constants_h
 #define Fahmedeen_Constants_h
-#define BASEURL @"http://www.fahmedeen.org/iphone-app/"
+#define BASEURL @"http://baitussalam.org/bs/app/"
 #define BAYAN_PHP_FILE @"bayan.php"
 
 #endif
