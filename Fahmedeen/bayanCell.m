@@ -11,8 +11,8 @@
 @interface bayanCell ()
 
 @property (copy, nonatomic) void (^didTapButtonBlock)(id sender);
-//@property (copy, nonatomic) void (^didTapMarkButtonBlock)(id sender);
-//@property (copy, nonatomic) void (^didTapShareButtonBlock)(id sender);
+@property (copy, nonatomic) void (^didTapMarkButtonBlock)(id sender);
+@property (copy, nonatomic) void (^didTapShareButtonBlock)(id sender);
 
 @end
 
@@ -27,9 +27,8 @@
     [super awakeFromNib];
     
     [self.bayanPlayButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.hiddenButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.markAsFavouriteButton addTarget:self action:@selector(didTapMarkButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.shareButton addTarget:self action:@selector(didTapShareButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.markAsFavouriteButton addTarget:self action:@selector(didTapMarkButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.shareButton addTarget:self action:@selector(didTapShareButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didTapButton:(id)sender {
@@ -38,20 +37,20 @@
     }
 }
 
-//- (void)didTapMarkButton:(id)sender {
-//    if (self.didTapMarkButtonBlock) {
-//        self.didTapMarkButtonBlock(sender);
-//    }
-//}
-//
-//- (void)didTapShareButton:(id)sender {
-//    if (self.didTapShareButtonBlock) {
-//        self.didTapShareButtonBlock(sender);
-//    }
-//}
+- (void)didTapMarkButton:(id)sender {
+    if (self.didTapMarkButtonBlock) {
+        self.didTapMarkButtonBlock(sender);
+    }
+}
 
-//- (IBAction)markAsFavouriteAction:(id)sender {
-//}
-//- (IBAction)shareButtonAction:(id)sender {
-//}
+- (void)didTapShareButton:(id)sender {
+    if (self.didTapShareButtonBlock) {
+        self.didTapShareButtonBlock(sender);
+    }
+}
+
+- (IBAction)markAsFavouriteAction:(id)sender {
+}
+- (IBAction)shareButtonAction:(id)sender {
+}
 @end

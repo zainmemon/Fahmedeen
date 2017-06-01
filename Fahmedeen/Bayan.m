@@ -28,7 +28,6 @@
     NSMutableArray *MarkUnMarkTitleArray;
     WebService *BayanListWebServiceObject;
     BOOL timeToPutInSingleton;
-    long indexPathDuplicate;
 }
 
 - (void)viewDidLoad
@@ -174,24 +173,24 @@
         
         customAppDelegate.isPaused = TRUE;
         
-        if([imageNameArray[previousButton] isEqualToString:@"Resume"])
+        if([imageNameArray[previousButton] isEqualToString:@"selected_play"])
         {
-            imageNameArray[previousButton] = @"Pause";
+            imageNameArray[previousButton] = @"pause";
             [self.BayanList reloadData];
         }
         
     }
     else
     {
-        [self.playButton setBackgroundImage:[UIImage imageNamed: @"play"]
+        [self.playButton setBackgroundImage:[UIImage imageNamed:@"play"]
                                    forState:UIControlStateNormal];
         
         [customAppDelegate.audioPlayer pause];
         customAppDelegate.isPaused = FALSE;
         
-        if([imageNameArray[previousButton] isEqualToString:@"Pause"])
+        if([imageNameArray[previousButton] isEqualToString:@"pause"])
         {
-            imageNameArray[previousButton] = @"Resume";
+            imageNameArray[previousButton] = @"selected_play";
             [self.BayanList reloadData];
         }
     }
@@ -229,7 +228,7 @@
     }
     else
     {
-        [self.playButton setBackgroundImage:[UIImage imageNamed: @"play"]
+        [self.playButton setBackgroundImage:[UIImage imageNamed:@"play"]
                                    forState:UIControlStateNormal];
     }
 }
@@ -324,86 +323,31 @@
     
     NSString *bayanName = [[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"];
     
-    [imageNameArray addObject: @"Play"];
+    [imageNameArray addObject:@"play"];
     
     [mycell setDidTapButtonBlock:^(id sender) {
         
-        indexPathDuplicate = indexPath.section;
-        
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"What you want to do?"
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:[imageNameArray objectAtIndex:indexPath.section], [MarkUnMarkTitleArray objectAtIndex:indexPath.section], @"Share", nil];
-        
-        [actionSheet showInView:self.view];
-        
-        
-    }];
-    
-//    [mycell setDidTapMarkButtonBlock:^(id sender)
-//     {
-//     }];
-//    
-//    
-//    [mycell setDidTapShareButtonBlock:^(id sender)
-//     {
-//        
-//         
-//     }];
-    
-    //mycell.markUnMarkTitle.text = [MarkUnMarkTitleArray objectAtIndex:indexPath.section];
-    [mycell.markAsFavouriteButton setImage:[UIImage imageNamed:[favouritesImageNameArray objectAtIndex:indexPath.section]]];
-//    [mycell.bayanPlayButton setBackgroundImage:[UIImage imageNamed:[imageNameArray objectAtIndex:indexPath.section]] forState:UIControlStateNormal];
-    mycell.bayanTitle.text = bayanName;
-    mycell.bayanPlayButton.tag = indexPath.section;
-    
-    
-    return mycell;
-}
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    //[self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
-    if (buttonIndex == 0)
-    {
-        if ([imageNameArray[indexPathDuplicate] isEqualToString:@"pause"]) {
+        if ([imageNameArray[indexPath.section] isEqualToString:@"pause"]) {
             
-<<<<<<< HEAD
             [self.playButton setBackgroundImage:[UIImage imageNamed:@"play"]
-=======
-            NSLog(@"1");
-            [self.playButton setBackgroundImage:[UIImage imageNamed: @"play"]
->>>>>>> origin/master
                                        forState:UIControlStateNormal];
             
             [customAppDelegate.audioPlayer pause];
             customAppDelegate.isPaused = FALSE;
-            imageNameArray[indexPathDuplicate] = @"Resume";
+            imageNameArray[indexPath.section] = @"selected_play";
             
             [self.BayanList reloadData];
         }
         else
         {
-            if(![customAppDelegate.currentPlayingItem isEqualToString:[[AllBayans objectAtIndex:indexPathDuplicate] objectForKey:@"name"]])
+            if(![customAppDelegate.currentPlayingItem isEqualToString:[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]])
             {
-<<<<<<< HEAD
                 imageNameArray[previousButton] = @"play";
                 imageNameArray[indexPath.section] = @"pause";
                 
                 previousButton = indexPath.section;
                 NSString *filePath = [NSString stringWithFormat:@"http://baitussalam.org/%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"link"]];
                 customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]];
-=======
-                NSLog(@"2");
-                imageNameArray[previousButton] =  @"Play";
-                imageNameArray[indexPathDuplicate] = @"Pause";
-                
-                previousButton = indexPathDuplicate;
-                NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPathDuplicate] objectForKey:@"link"]];
-                customAppDelegate.currentPlayingItem = [NSString stringWithFormat:@"%@",[[AllBayans objectAtIndex:indexPathDuplicate] objectForKey:@"name"]];
->>>>>>> origin/master
                 self.currentPlaying.text = customAppDelegate.currentPlayingItem;
                 [self playStream:filePath];
                 
@@ -417,48 +361,12 @@
                 
                 [customAppDelegate.audioPlayer play];
                 customAppDelegate.isPaused = true;
-                imageNameArray[indexPathDuplicate] = @"Pause";
+                imageNameArray[indexPath.section] = @"pause";
                 
                 [self.BayanList reloadData];
             }
         }
-
-    }
-    else if (buttonIndex == 1)
-    {
-        if([favouritesImageNameArray[indexPathDuplicate] isEqualToString:@"star-filled"])
-        {
-            [customAppDelegate.favouritesList removeObject:[AllBayans objectAtIndex:indexPathDuplicate]];
-            
-            if(timeForFavourites)
-            {
-                [favouritesImageNameArray removeObjectAtIndex:indexPathDuplicate];
-                [MarkUnMarkTitleArray removeObjectAtIndex:indexPathDuplicate];
-            }
-            else
-            {
-                MarkUnMarkTitleArray[indexPathDuplicate] = @"Mark As Favourite";
-                favouritesImageNameArray[indexPathDuplicate] = @"star";
-            }
-            
-        }
-        else
-        {
-            [customAppDelegate.favouritesList addObject:[AllBayans objectAtIndex:indexPathDuplicate]];
-            
-            if(timeForFavourites)
-            {
-                [favouritesImageNameArray removeObjectAtIndex:indexPathDuplicate];
-                [MarkUnMarkTitleArray removeObjectAtIndex:indexPathDuplicate];
-            }
-            else
-            {
-                MarkUnMarkTitleArray[indexPathDuplicate] = @"UnMark From Favourites";
-                favouritesImageNameArray[indexPathDuplicate] = @"star-filled";
-            }
-        }
         
-<<<<<<< HEAD
     }];
     
     [mycell setDidTapMarkButtonBlock:^(id sender)
@@ -515,30 +423,8 @@
     mycell.bayanTitle.text = bayanName;
     mycell.bayanPlayButton.tag = indexPath.section;
     
-=======
-        [[NSUserDefaults standardUserDefaults]setObject:customAppDelegate.favouritesList forKey:@"favouritesArray"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self.BayanList reloadData];
-    }
-    else if (buttonIndex == 2)
-    {
-        NSString *bayanName = [[AllBayans objectAtIndex:indexPathDuplicate] objectForKey:@"name"];
-        NSString *filePath = [NSString stringWithFormat:@"http://fahmedeen.org/%@",[[AllBayans objectAtIndex:indexPathDuplicate] objectForKey:@"link"]];
-        NSString * message = [NSString stringWithFormat:@"Click on the following link to listen %@   \n \n%@",bayanName,filePath];
-        NSLog(@"the message is: %@",message);
-        NSArray * shareItems = @[message];
-        
-        UIActivityViewController * avc = [[UIActivityViewController alloc] initWithActivityItems:shareItems applicationActivities:nil];
-        
-        [self presentViewController:avc animated:YES completion:nil];
-    }
-    else
-    {
-        NSLog(@"The Color selection action sheet.");
-    }
->>>>>>> origin/master
     
-    NSLog(@"Index = %ld - Title = %@", (long)buttonIndex, [actionSheet buttonTitleAtIndex:buttonIndex]);
+    return mycell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

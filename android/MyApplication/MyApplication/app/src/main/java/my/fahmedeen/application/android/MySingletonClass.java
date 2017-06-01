@@ -5,8 +5,8 @@ package my.fahmedeen.application.android;
  */
 public class MySingletonClass {
     private static MySingletonClass ourInstance = new MySingletonClass();
-    private String baseURL = "http://baitussalam.org/";
-    private String baseWebserviceURL = "bs/app/bayan.php";
+    private String baseURL = "http://www.fahmedeen.org/";
+    private String baseWebserviceURL = "iphone-app/bayan.php";
 
     public static MySingletonClass getInstance() {
         return ourInstance;

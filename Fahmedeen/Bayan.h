@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AudioPlayer.h"
 
-@interface Bayan : UIViewController<UITableViewDelegate,UITableViewDataSource,AVAudioPlayerDelegate,UIActionSheetDelegate>
+@interface Bayan : UIViewController<UITableViewDelegate,UITableViewDataSource,AVAudioPlayerDelegate>
 
 @property (weak, nonatomic) IBOutlet UISlider *currentTimeSlider;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
