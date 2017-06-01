@@ -25,7 +25,6 @@
     unsigned long previousButton;
     AppDelegate *customAppDelegate;
     NSMutableArray *imageNameArray;
-    NSMutableArray *favouritesImageNameArray;
     NSMutableArray *MarkUnMarkTitleArray;
     WebService *BayanListWebServiceObject;
     BOOL timeToPutInSingleton;
@@ -42,7 +41,6 @@
     [_progress setHidden:false];
     
     imageNameArray = [[NSMutableArray alloc]init];
-    favouritesImageNameArray = [[NSMutableArray alloc]init];
     MarkUnMarkTitleArray = [[NSMutableArray alloc]init];
    
     self.view.backgroundColor = [UIColor colorWithRed:227.0/255.0 green:227.0/255.0 blue:227.0/255.0 alpha:1.0];
@@ -83,7 +81,6 @@
     
     if([self.type isEqualToString:@""])
     {
-        //AllBayans = [[NSUserDefaults standardUserDefaults]objectForKey:@"favouritesArray"];
         AllBayans = customAppDelegate.favouritesList;
         [_progress setHidden:true];
         timeForFavourites = true;
@@ -284,18 +281,15 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return [AllBayans count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return 1;
 }
 
@@ -311,20 +305,15 @@
     
     if(timeForFavourites)
     {
-        [favouritesImageNameArray addObject:@"star-filled"];
         [MarkUnMarkTitleArray addObject:@"UnMark From Favourites"];
     }
     else
     {
-        [favouritesImageNameArray addObject:@"star"];
         [MarkUnMarkTitleArray addObject:@"Mark As Favourite"];
         for(int i = 0;i<customAppDelegate.favouritesList.count; i++)
         {
             if([[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"] isEqualToString:[[customAppDelegate.favouritesList objectAtIndex:i] objectForKey:@"name"]])
                {
-                   [favouritesImageNameArray removeLastObject];
-                   [favouritesImageNameArray addObject:@"star-filled"];
-                   
                    [MarkUnMarkTitleArray removeLastObject];
                    [MarkUnMarkTitleArray addObject:@"UnMark From Favourites"];
                    break;
@@ -340,7 +329,6 @@
         
         if ([imageNameArray[indexPath.section] isEqualToString:@"pause"]) {
             
-            NSLog(@"1");
             [self.playButton setBackgroundImage:[UIImage imageNamed:@"play"]
                                        forState:UIControlStateNormal];
             
@@ -354,7 +342,6 @@
         {
             if(![customAppDelegate.currentPlayingItem isEqualToString:[[AllBayans objectAtIndex:indexPath.section] objectForKey:@"name"]])
             {
-                NSLog(@"2");
                 imageNameArray[previousButton] = @"play";
                 imageNameArray[indexPath.section] = @"pause";
                 
@@ -369,7 +356,6 @@
             }
             else
             {
-                NSLog(@"3");
                 [self.playButton setBackgroundImage:[UIImage imageNamed:@"pause"]
                                            forState:UIControlStateNormal];
                 
@@ -378,9 +364,7 @@
                 imageNameArray[indexPath.section] = @"pause";
                 
                 [self.BayanList reloadData];
-                
             }
-            
         }
         
     }];
@@ -393,15 +377,12 @@
              
              if(timeForFavourites)
              {
-                 [favouritesImageNameArray removeObjectAtIndex:indexPath.section];
                  [MarkUnMarkTitleArray removeObjectAtIndex:indexPath.section];
              }
              else
              {
                  MarkUnMarkTitleArray[indexPath.section] = @"Mark As Favourite";
-                 favouritesImageNameArray[indexPath.section] = @"star";
              }
-             
          }
          else
          {
@@ -409,13 +390,11 @@
              
              if(timeForFavourites)
              {
-                 [favouritesImageNameArray removeObjectAtIndex:indexPath.section];
                  [MarkUnMarkTitleArray removeObjectAtIndex:indexPath.section];
              }
              else
              {
                  MarkUnMarkTitleArray[indexPath.section] = @"UnMark From Favourites";
-                 favouritesImageNameArray[indexPath.section] = @"star-filled";
              }
          }
          
@@ -453,7 +432,6 @@
     
 }
 
-
 - (CGFloat)tableView:(UITableView*)tableView
 heightForHeaderInSection:(NSInteger)section {
     
@@ -473,18 +451,16 @@ heightForHeaderInSection:(NSInteger)section {
                          handler:^(UIAlertAction * action)
                          {
                              [alert dismissViewControllerAnimated:YES completion:nil];
-                             
-                             
-                             
                          }];
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
     
     return alert;
 }
+
 - (IBAction)tryAgainButtonAction:(id)sender
 {
-    
     [self callWebService];
 }
+
 @end
